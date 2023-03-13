@@ -1,0 +1,7 @@
+.header-bg {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: solid 1px red; */
+  max-width: 1180px;
+}
