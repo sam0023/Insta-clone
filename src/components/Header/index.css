@@ -5,3 +5,19 @@
   /* border: solid 1px red; */
   max-width: 1180px;
 }
+.nav-large-screen-options {
+  display: none;
+}
+
+.hamburger {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .nav-large-screen-options {
+    display: block;
+  }
+  .hamburger {
+    display: none;
+  }
+}

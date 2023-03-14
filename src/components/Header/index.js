@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
+import {GiHamburgerMenu} from 'react-icons/gi'
 import Cookies from 'js-cookie'
 import logo from '../images/logo.png'
 import './index.css'
@@ -53,7 +54,7 @@ class Header extends Component {
           <h1>Insta Share</h1>
         </div>
 
-        <ul>
+        <ul className="nav-large-screen-options">
           <li>
             <input
               type="search"
@@ -64,7 +65,7 @@ class Header extends Component {
             />
             <button
               type="button"
-              testid="searchIcon"
+              data-testid="searchIcon"
               onClick={this.requestUpdateSearch2}
             >
               <FaSearch />
@@ -101,8 +102,12 @@ class Header extends Component {
             </button>
           </li>
         </ul>
+        <button type="button" className="hamburger">
+          <GiHamburgerMenu />
+        </button>
       </nav>
     )
   }
 }
+
 export default withRouter(Header)

@@ -69,7 +69,7 @@ class OthersProfile extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container" data-testid="loader">
       <Loader
         className="loader"
         type="ThreeDots"

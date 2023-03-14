@@ -62,9 +62,9 @@ class Post extends Component {
     } = details
     const totalLikes = likeStatus ? likesCount + 1 : likesCount
     const likeIcon = likeStatus ? (
-      <FcLike onClick={this.requestPostLikeApi} testid="unLikeIcon" />
+      <FcLike onClick={this.requestPostLikeApi} data-testid="unLikeIcon" />
     ) : (
-      <BsHeart onClick={this.requestPostLikeApi} testid="likeIcon" />
+      <BsHeart onClick={this.requestPostLikeApi} data-testid="likeIcon" />
     )
     return (
       <li>
