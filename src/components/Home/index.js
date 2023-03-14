@@ -11,36 +11,60 @@ import './index.css'
 
 class Home extends Component {
   state = {
+    showSearchResults: false,
     showSearchPage: false,
-
     search: '',
   }
 
   updateSearch = value => {
-    this.setState({search: value, showSearchPage: true})
+    this.setState({search: value, showSearchResults: true})
   }
 
   defaultView = () => {
-    this.setState({showSearchPage: false})
+    this.setState({showSearchResults: false, showSearchPage: false})
   }
 
-  renderFinalView = () => (
-    <div>
-      <UserStories />
-      <HomePagePosts />
-    </div>
+  showSearchPage = () => {
+    this.setState({showSearchPage: true})
+  }
+
+  renderSearchView = () => (
+    <>
+      <div className="search-page">
+        <p>Search appears here</p>
+      </div>
+      <div className="home-page-container2">
+        <UserStories />
+        <HomePagePosts />
+      </div>
+    </>
   )
+
+  renderFinalView = () => {
+    const {showSearchPage} = this.state
+
+    if (showSearchPage) {
+      return this.renderSearchView()
+    }
+    return (
+      <div className="home-page-container">
+        <UserStories />
+        <HomePagePosts />
+      </div>
+    )
+  }
 
   render() {
     console.log('in home')
-    const {showSearchPage, search} = this.state
+    const {showSearchResults, search} = this.state
     return (
-      <div>
+      <div className="home-bg">
         <Header
           updateSearch={this.updateSearch}
           defaultView={this.defaultView}
+          showSearchPage={this.showSearchPage}
         />
-        {showSearchPage ? (
+        {showSearchResults ? (
           <SearchResult search={search} />
         ) : (
           this.renderFinalView()

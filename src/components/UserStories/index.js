@@ -1,6 +1,6 @@
 import Slider from 'react-slick'
-// import 'slick-carousel/slick/slick.css'
-// import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
@@ -80,23 +80,55 @@ class UserStories extends Component {
   renderSuccessView = () => {
     const {stories} = this.state
     const settings = {
-      dots: true,
-      infinite: true,
+      dots: false,
+      infinite: false,
       speed: 500,
-      slidesToShow: 6,
-      slidesToScroll: 3,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      //   responsive: [
+      //     {
+      //       breakpoint: 1024,
+      //       settings: {
+      //         slidesToShow: 4,
+      //         slidesToScroll: 1,
+      //       },
+      //     },
+      //     {
+      //       breakpoint: 600,
+      //       settings: {
+      //         slidesToShow: 3,
+      //         slidesToScroll: 1,
+      //       },
+      //     },
+      //     {
+      //       breakpoint: 480,
+      //       settings: {
+      //         slidesToShow: 2,
+      //         slidesToScroll: 1,
+      //       },
+      //     },
+      //   ],
     }
     return (
-      <ul className="slider-container">
-        <Slider {...settings}>
-          {stories.map(eachItem => (
-            <li key={eachItem.userId}>
-              <img src={eachItem.storyUrl} alt="user story" />
-              <p>{eachItem.userName}</p>
-            </li>
-          ))}
-        </Slider>
-      </ul>
+      <div className="slider-container">
+        <div className="slider-c2">
+          <Slider {...settings} className="slider">
+            {stories.map(eachItem => (
+              <div key={eachItem.userId} className="home-story-container">
+                <div className="img-container">
+                  <img
+                    src={eachItem.storyUrl}
+                    alt="user story"
+                    className="home-story-img"
+                  />
+                  {/* <button type="button">hello</button> */}
+                </div>
+                <p>{eachItem.userName}</p>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
     )
   }
 

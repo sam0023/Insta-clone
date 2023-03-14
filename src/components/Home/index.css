@@ -1,0 +1,27 @@
+.home-bg {
+  background: #fafafa;
+}
+
+.home-page-container {
+  display: block;
+}
+
+.search-page {
+  display: block;
+}
+
+.home-page-container2 {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .home-page-container {
+    display: block;
+  }
+  .search-page {
+    display: none;
+  }
+  .home-page-container2 {
+    display: block;
+  }
+}

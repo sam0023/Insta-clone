@@ -1,9 +1,23 @@
-.header-bg {
+.nav-lg-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* border: solid 1px red; */
-  max-width: 1180px;
+  border: solid 5px green;
+  width: 80vw;
+  max-width: 1100px;
+}
+* {
+  border: solid 1px red;
+}
+.nav-bg {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.nav-logo-container {
+  display: flex;
+  border-color: blue;
 }
 .nav-large-screen-options {
   display: none;
@@ -13,11 +27,20 @@
   display: block;
 }
 
+.nav-sm-options-bg {
+  display: block;
+}
+
 @media (min-width: 992px) {
   .nav-large-screen-options {
-    display: block;
+    display: flex;
+    margin-left: 0px;
+    list-style: none;
   }
   .hamburger {
+    display: none;
+  }
+  .nav-sm-options-bg {
     display: none;
   }
 }

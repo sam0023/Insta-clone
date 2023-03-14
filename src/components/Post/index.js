@@ -67,7 +67,7 @@ class Post extends Component {
       <BsHeart onClick={this.requestPostLikeApi} data-testid="likeIcon" />
     )
     return (
-      <li>
+      <li className="post-container">
         <div>
           <img src={profilePic} alt="post author profile" />
           <Link to={`/users/${userId}`}>
