@@ -9,9 +9,13 @@
 .slider-c2 {
   max-width: 1100px;
 }
+/* * {
+  border: solid 1px red;
+} */
 .slider {
   padding: 50px;
-  width: 100%;
+  max-width: 1100px;
+  width: 80vw;
   /* background-color: blueviolet; */
   display: flex;
   margin-bottom: 0px;

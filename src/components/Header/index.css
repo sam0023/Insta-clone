@@ -6,9 +6,7 @@
   width: 80vw;
   max-width: 1100px;
 }
-* {
-  border: solid 1px red;
-}
+
 .nav-bg {
   display: flex;
   justify-content: center;

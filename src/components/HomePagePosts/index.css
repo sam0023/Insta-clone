@@ -1,0 +1,21 @@
+.home-post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page-post-list-container {
+  list-style: none;
+  padding-left: 0px;
+  max-width: 1040px;
+  width: 100vw;
+
+  /* background-color: blue; */
+  /* border: solid 5px black; */
+  /* padding: 20px;
+  margin: 10px; */
+}
+/* * {
+  border: solid 1px red;
+} */

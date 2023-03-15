@@ -62,36 +62,55 @@ class Post extends Component {
     } = details
     const totalLikes = likeStatus ? likesCount + 1 : likesCount
     const likeIcon = likeStatus ? (
-      <FcLike onClick={this.requestPostLikeApi} data-testid="unLikeIcon" />
+      <FcLike
+        onClick={this.requestPostLikeApi}
+        data-testid="unLikeIcon"
+        className="like-icon"
+      />
     ) : (
-      <BsHeart onClick={this.requestPostLikeApi} data-testid="likeIcon" />
+      <BsHeart
+        onClick={this.requestPostLikeApi}
+        data-testid="likeIcon"
+        className="like-icon"
+      />
     )
     return (
       <li className="post-container">
-        <div>
-          <img src={profilePic} alt="post author profile" />
-          <Link to={`/users/${userId}`}>
-            <h1>{userName}</h1>
+        <div className="post-profile-section">
+          <div className="post-profile-img-container">
+            <img
+              src={profilePic}
+              alt="post author profile"
+              className="post-author-img"
+            />
+          </div>
+
+          <Link to={`/users/${userId}`} className="post-link">
+            <h1 className="p">{userName}</h1>
           </Link>
         </div>
-        <img src={postDetails.image_url} alt="post" />
-        <div>
-          {likeIcon}
-
-          <FaRegComment />
-          <BiShareAlt />
+        <div className="post-img-container ">
+          <img src={postDetails.image_url} alt="post" className="post-img" />
         </div>
-        <p>{totalLikes} likes</p>
-        <p>{postDetails.caption}</p>
-        <ul>
-          {comments.map(eachItem => (
-            <li key={eachItem.user_name}>
-              <span>{eachItem.user_name}</span>
-              <p>{eachItem.comment}</p>
-            </li>
-          ))}
-        </ul>
-        <p>{createdAt}</p>
+        <div className="post-footer">
+          <div>
+            {likeIcon}
+
+            <FaRegComment className="comment-icon" />
+            <BiShareAlt className="share-icon" />
+          </div>
+          <p className="likes-count">{totalLikes} likes</p>
+          <p>{postDetails.caption}</p>
+          <ul>
+            {comments.map(eachItem => (
+              <li key={eachItem.user_name}>
+                <span>{eachItem.user_name}</span>
+                <p>{eachItem.comment}</p>
+              </li>
+            ))}
+          </ul>
+          <p>{createdAt}</p>
+        </div>
       </li>
     )
   }

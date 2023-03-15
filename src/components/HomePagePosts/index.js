@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Post from '../Post'
+import './index.css'
 
 const viewOptions = {
   initial: 'INITIAL',
@@ -83,8 +84,8 @@ class HomePagePosts extends Component {
     const {posts} = this.state
 
     return (
-      <div>
-        <ul>
+      <div className="home-post-container">
+        <ul className="home-page-post-list-container">
           {posts.map(eachItem => (
             <Post key={eachItem.postId} details={eachItem} />
           ))}
