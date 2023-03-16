@@ -1,5 +1,7 @@
 .post-container {
-  background-color: aqua;
+  margin-bottom: 32px;
+  font-family: 'Roboto';
+  font-style: normal;
 }
 /* * {
   border: solid 1px black;
@@ -36,19 +38,17 @@
 }
 .post-link {
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 .p {
-  width: 104px;
   height: 18px;
   left: 72px;
   top: 21px;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  /* identical to box height, or 129% */
 
   align-items: center;
 
@@ -59,33 +59,38 @@
   height: 614px;
   width: 100%;
   margin-bottom: 0px;
-  border: solid 1px red;
 }
 
 .post-footer {
   margin-top: 0px;
-  height: 194px;
 
+  padding-left: 24px;
   background: #ffffff;
-  /* border: 1px solid #dbdbdb; */
+  border: 1px solid #dbdbdb;
+  border-top: none;
   border-radius: 0px 0px 4px 4px;
 }
 
 .post-img-container {
   margin-bottom: 0px;
-  background-color: #c60188;
+
   padding: 0px;
+}
+.icons-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .like-icon {
   height: 20px;
   width: 23.24px;
-  margin: 16px 16px 16px 24px;
+  margin: 16px 16px 16px 0px;
 }
 
 .comment-icon {
   height: 19.38px;
   width: 22px;
-  margin: 16px;
+  margin: 1px;
 }
 
 .share-icon {
@@ -97,16 +102,57 @@
   width: 68px;
   height: 18px;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   /* identical to box height, or 129% */
-  margin: 8px 0px 8px 24px;
+  margin: 0px 0px 8px 0px;
   display: flex;
   align-items: center;
-  background-color: red;
-
+  /* background-color: red; */
   color: #262626;
+}
+.caption-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #262626;
+  margin: 8px 0px 8px 0px;
+}
+.comment-section {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+.comment-list {
+  display: flex;
+  align-items: center;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #262626;
+  margin: 0px 0px 8px 0px;
+}
+.comment-author {
+  margin: 0px 4px 0px 0px;
+}
+.comment {
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0px;
+}
+.post-time {
+  margin: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #989898;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 767px) {
+  .post-img {
+    height: 375px;
+  }
 }

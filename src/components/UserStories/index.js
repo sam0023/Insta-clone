@@ -83,51 +83,50 @@ class UserStories extends Component {
       dots: false,
       infinite: false,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: 6,
       slidesToScroll: 1,
-      //   responsive: [
-      //     {
-      //       breakpoint: 1024,
-      //       settings: {
-      //         slidesToShow: 4,
-      //         slidesToScroll: 1,
-      //       },
-      //     },
-      //     {
-      //       breakpoint: 600,
-      //       settings: {
-      //         slidesToShow: 3,
-      //         slidesToScroll: 1,
-      //       },
-      //     },
-      //     {
-      //       breakpoint: 480,
-      //       settings: {
-      //         slidesToShow: 2,
-      //         slidesToScroll: 1,
-      //       },
-      //     },
-      //   ],
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     }
     return (
       <div className="slider-container">
-        <div className="slider-c2">
-          <Slider {...settings} className="slider">
-            {stories.map(eachItem => (
-              <div key={eachItem.userId} className="home-story-container">
-                <div className="img-container">
+        <Slider {...settings} className="slider">
+          {stories.map(eachItem => (
+            <div key={eachItem.userId} className="home-story-container">
+              <div className="img-container">
+                <div className="slider-img-container">
                   <img
                     src={eachItem.storyUrl}
                     alt="user story"
-                    className="home-story-img"
+                    className="slider-img"
                   />
-                  {/* <button type="button">hello</button> */}
                 </div>
-                <p>{eachItem.userName}</p>
               </div>
-            ))}
-          </Slider>
-        </div>
+              <p className="slider-img-name">{eachItem.userName}</p>
+            </div>
+          ))}
+        </Slider>
       </div>
     )
   }

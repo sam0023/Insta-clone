@@ -3,7 +3,11 @@
 }
 
 .home-page-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: solid 5px black; */
 }
 
 .search-page {
@@ -15,9 +19,9 @@
 }
 
 @media (min-width: 992px) {
-  .home-page-container {
+  /* .home-page-container {
     display: block;
-  }
+  } */
   .search-page {
     display: none;
   }

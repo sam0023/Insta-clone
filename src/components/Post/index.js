@@ -77,15 +77,15 @@ class Post extends Component {
     return (
       <li className="post-container">
         <div className="post-profile-section">
-          <div className="post-profile-img-container">
-            <img
-              src={profilePic}
-              alt="post author profile"
-              className="post-author-img"
-            />
-          </div>
-
           <Link to={`/users/${userId}`} className="post-link">
+            <div className="post-profile-img-container">
+              <img
+                src={profilePic}
+                alt="post author profile"
+                className="post-author-img"
+              />
+            </div>
+
             <h1 className="p">{userName}</h1>
           </Link>
         </div>
@@ -93,23 +93,23 @@ class Post extends Component {
           <img src={postDetails.image_url} alt="post" className="post-img" />
         </div>
         <div className="post-footer">
-          <div>
+          <div className="icons-container">
             {likeIcon}
 
             <FaRegComment className="comment-icon" />
             <BiShareAlt className="share-icon" />
           </div>
           <p className="likes-count">{totalLikes} likes</p>
-          <p>{postDetails.caption}</p>
-          <ul>
+          <p className="caption-text">{postDetails.caption}</p>
+          <ul className="comment-section">
             {comments.map(eachItem => (
-              <li key={eachItem.user_name}>
-                <span>{eachItem.user_name}</span>
-                <p>{eachItem.comment}</p>
+              <li key={eachItem.user_name} className="comment-list">
+                <span className="comment-author">{eachItem.user_name} </span>
+                <p className="comment">{eachItem.comment}</p>
               </li>
             ))}
           </ul>
-          <p>{createdAt}</p>
+          <p className="post-time">{createdAt}</p>
         </div>
       </li>
     )

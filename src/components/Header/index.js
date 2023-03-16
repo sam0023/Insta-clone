@@ -90,41 +90,47 @@ class Header extends Component {
 
   render() {
     const {activePage} = this.props
+    console.log('activePage')
+    console.log(activePage)
     const {activeSearch, showOptions} = this.state
     return (
       <nav className="nav-bg">
         <div className="nav-lg-container">
           <div className="nav-logo-container">
             <Link to="/" onClick={this.requestDefaultView}>
-              <img src={logo} alt="website logo" />
+              <img src={logo} alt="website logo" className="website-logo" />
             </Link>
-            <h1>Insta Share</h1>
+            <h1 className="logo-name">Insta Share</h1>
           </div>
 
           <ul className="nav-large-screen-options">
-            <li>
+            <li className="search-container">
               <input
                 type="search"
                 value={activeSearch}
                 onChange={this.updateSearch}
                 onKeyDown={this.requestUpdateSearch}
                 placeholder="Search Caption"
+                className="search"
               />
-              <button
-                type="button"
-                data-testid="searchIcon"
-                onClick={this.requestUpdateSearch2}
-              >
-                <FaSearch />
-              </button>
+              <div className="search-icon-container">
+                <button
+                  type="button"
+                  data-testid="searchIcon"
+                  onClick={this.requestUpdateSearch2}
+                  className="search-icon-btn"
+                >
+                  <FaSearch className="nav-search-icon" />
+                </button>
+              </div>
             </li>
             <li>
               <Link
                 to="/"
                 className={`${
                   activePage === 'HOME'
-                    ? 'active-header-button'
-                    : 'header-button'
+                    ? 'active-header-section'
+                    : 'header-section'
                 }`}
                 onClick={this.requestDefaultView}
               >
@@ -136,8 +142,8 @@ class Header extends Component {
               <Link
                 className={`${
                   activePage === 'PROFILE'
-                    ? 'active-header-button'
-                    : 'header-button'
+                    ? 'active-header-section'
+                    : 'header-section'
                 }`}
                 to="/my-profile"
                 onClick={this.requestDefaultView}
@@ -146,16 +152,23 @@ class Header extends Component {
               </Link>
             </li>
             <li>
-              <button type="button" onClick={this.logout}>
+              <button
+                type="button"
+                className="logout-btn"
+                onClick={this.logout}
+              >
                 Logout
               </button>
             </li>
           </ul>
-          <div className="hamburger">
-            <button type="button" onClick={this.toggleOptions}>
-              <GiHamburgerMenu />
-            </button>
-          </div>
+
+          <button
+            type="button"
+            onClick={this.toggleOptions}
+            className="hamburger"
+          >
+            <GiHamburgerMenu className="hamburger" />
+          </button>
         </div>
         <div className="nav-sm-options-bg">
           {showOptions && this.renderSmOptions()}
