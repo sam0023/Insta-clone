@@ -1,0 +1,232 @@
+.profile-page {
+  max-width: 1040px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+.profile-data-container-sm {
+  width: 100%;
+  border: solid 3px black;
+  align-self: center;
+}
+.profile-data-container {
+  display: flex;
+
+  /* margin-bottom: 60px; */
+}
+* {
+  border: solid 1px red;
+}
+.profile-img {
+  width: 180px;
+  height: 180px;
+  left: 200px;
+  top: 97px;
+  /* background-color: aqua; */
+  margin-right: 64px;
+  /* background: #c4c4c4; */
+}
+.profile-stats-container {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  margin: 0px;
+}
+.profile-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color: aqua; */
+}
+.profile-name {
+  margin: 5px 0px 20px 0px;
+  font-weight: 300px;
+  font-size: 32px;
+  line-height: 32px;
+  color: #262626;
+}
+.user-name {
+  margin-bottom: 8px;
+  /* background-color: aqua; */
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #262626;
+}
+.stats-list {
+  display: flex;
+  padding: 0px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 48px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #262626;
+}
+.stat {
+  padding: 0px;
+  margin-right: 5px;
+  /* background-color: aqua; */
+}
+.stat-title {
+  margin: 0px;
+  font-weight: 400;
+}
+.profile-bio {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #262626;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.profile-status-container {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 60px;
+  border: solid 3px black;
+  margin-bottom: 0px;
+  background-color: aqua;
+}
+.profile-hr-line {
+  border: 0.5px solid #c6c6c8;
+  margin-bottom: 32px;
+  margin-top: 32px;
+}
+.profile-grid-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.grid {
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+}
+.grid-title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #262626;
+  margin: 0px;
+}
+/* * {
+  border: solid 1px red;
+} */
+/* .profile-posts-container {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+} */
+.profile-name-sm {
+  display: none;
+}
+.user-name-sm {
+  display: none;
+}
+.profile-bio-sm {
+  display: none;
+}
+@media (max-width: 992px) {
+  .profile-data-container-sm {
+    width: 80%;
+  }
+  .profile-name-sm {
+    margin: 5px 0px 20px 0px;
+    font-weight: 300px;
+    font-size: 20px;
+    line-height: 28px;
+    color: #262626;
+    display: block;
+  }
+  .user-name-sm {
+    margin-bottom: 8px;
+    /* background-color: aqua; */
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    display: block;
+    color: #262626;
+  }
+  .profile-bio-sm {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #262626;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: block;
+  }
+  .profile-name {
+    display: none;
+  }
+  .user-name {
+    display: none;
+  }
+  .profile-bio {
+    display: none;
+  }
+  .stats-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 40px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #262626;
+  }
+  .stat {
+    padding: 0px;
+    margin-bottom: 5px;
+    /* background-color: aqua; */
+  }
+  .profile-img {
+    height: 96px;
+    width: 96px;
+
+    /* background-color: aqua; */
+    margin-right: 30px;
+    /* background: #c4c4c4; */
+  }
+  .profile-post-section-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .profile-grid-container {
+    width: 80%;
+    align-self: center;
+    background-color: black;
+  }
+  .grid-title {
+    font-size: 18px;
+  }
+  .profile-status-container {
+    margin: 28px 0px 0px 0px;
+    align-self: center;
+  }
+}
+@media (max-width: 480px) {
+  .profile-img {
+    margin-right: 22px;
+  }
+  .stats-list {
+    margin-right: 15px;
+  }
+  .grid {
+    width: 18px;
+    height: 18px;
+    margin-right: 16px;
+  }
+}

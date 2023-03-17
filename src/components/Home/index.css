@@ -1,5 +1,6 @@
 .home-bg {
   background: #fafafa;
+  min-height: 100vh;
 }
 
 .home-page-container {
@@ -7,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   /* border: solid 5px black; */
 }
 

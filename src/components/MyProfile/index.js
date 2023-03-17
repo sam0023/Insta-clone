@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import CommonProfile from '../CommonProfile'
 import SearchResults from '../SearchResults'
+import './index.css'
 
 const viewOptions = {
   initial: 'INITIAL',
@@ -94,14 +95,12 @@ class MyProfile extends Component {
     const {details} = this.state
     console.log(details)
     return (
-      <div>
-        <CommonProfile
-          details={details}
-          profileAlt="my profile"
-          storyAlt="my story"
-          postAlt="my post"
-        />
-      </div>
+      <CommonProfile
+        details={details}
+        profileAlt="my profile"
+        storyAlt="my story"
+        postAlt="my post"
+      />
     )
   }
 
@@ -123,7 +122,7 @@ class MyProfile extends Component {
   render() {
     const {showSearchResults, search} = this.state
     return (
-      <div>
+      <div className="profile-bg">
         <Header
           updateSearch={this.updateSearch}
           defaultView={this.defaultView}
