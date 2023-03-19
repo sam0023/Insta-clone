@@ -1,10 +1,11 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
-import Cookies from 'js-cookie'
 
+import Cookies from 'js-cookie'
+import Spinner from '../Spinner'
 import CommonProfile from '../CommonProfile'
 import Header from '../Header'
 import SearchResults from '../SearchResults'
+import FailureView from '../FailureView'
 
 const viewOptions = {
   initial: 'INITIAL',
@@ -70,23 +71,13 @@ class OthersProfile extends Component {
 
   renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
-      <Loader
-        className="loader"
-        type="ThreeDots"
-        color="#222222"
-        height="50"
-        width="50"
-      />
+      <Spinner />
     </div>
   )
 
   renderFailureView = () => (
     <div>
-      <img src="" alt="failure view" />
-      <p>Something went wrong. Please try again</p>
-      <button type="submit" onClick={this.requestUserProfileApi}>
-        Try again
-      </button>
+      <FailureView apiRequest={this.requestUserProfileApi} />
     </div>
   )
 

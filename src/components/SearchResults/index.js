@@ -1,10 +1,10 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
-import Cookies from 'js-cookie'
-import Post from '../Post'
-import search not
-import './index.css'
 
+import Cookies from 'js-cookie'
+import Spinner from '../Spinner'
+import Post from '../Post'
+import FailureView from '../FailureView'
+import './index.css'
 
 const viewOptions = {
   initial: 'INITIAL',
@@ -68,23 +68,13 @@ class SearchResults extends Component {
 
   renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
-      <Loader
-        className="loader"
-        type="ThreeDots"
-        color="#ffffff"
-        height="50"
-        width="50"
-      />
+      <Spinner />
     </div>
   )
 
   renderFailureView = () => (
     <div>
-      <img src="" alt="failure view" />
-      <p>Something went wrong. Please try again</p>
-      <button type="button" onClick={this.requestSearchPostApi}>
-        Try again
-      </button>
+      <FailureView apiRequest={this.requestSearchPostApi} />
     </div>
   )
 
