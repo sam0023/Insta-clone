@@ -2,6 +2,9 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Post from '../Post'
+import search not
+import './index.css'
+
 
 const viewOptions = {
   initial: 'INITIAL',
@@ -87,29 +90,29 @@ class SearchResults extends Component {
 
   renderPosts = () => {
     const {posts} = this.state
-    if (posts.length === 0) {
+    if (posts.length !== 0) {
       return (
         <div>
-          <img src="" alt="search not found" />
+          <img src="../../images/search not found.png" alt="search not found" />
           <h1>Search Not Found</h1>
           <p>Try different keyword or search again</p>
         </div>
       )
     }
     return (
-      <div>
-        {posts.map(eachItem => (
-          <Post key={eachItem.postId} details={eachItem} />
-        ))}
-      </div>
+      <>
+        <h1 className="search-title">Search Results</h1>
+        <div className="search-post-container">
+          {posts.map(eachItem => (
+            <Post key={eachItem.postId} details={eachItem} className="" />
+          ))}
+        </div>
+      </>
     )
   }
 
   renderSuccessView = () => (
-    <div>
-      <h1>Search Results</h1>
-      {this.renderPosts()}
-    </div>
+    <div className="search-page-bg">{this.renderPosts()}</div>
   )
 
   renderFinalView = () => {

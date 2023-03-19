@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   max-width: 990px;
+  margin: 0px;
   width: 80vw;
 }
 
@@ -89,5 +90,13 @@
   .slider-img-container {
     width: 58px;
     height: 58px;
+  }
+  .slider-container {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    /* border: solid 3px black; */
+  }
+  .home-story-container {
+    margin-top: 0px;
   }
 }

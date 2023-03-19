@@ -18,7 +18,7 @@ const CommonProfile = props => {
       )
     }
     return (
-      <div>
+      <div className="profile-posts-bg">
         <ul className="profile-posts-container">
           {posts.map(eachItem => (
             <ProfilePost

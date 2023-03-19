@@ -15,6 +15,8 @@
   margin-bottom: 48px;
   font-family: 'Roboto';
   font-style: normal;
+  /* border: solid 3px black; */
+  width: 100%;
 }
 
 .nav-logo-container {
@@ -143,6 +145,9 @@
 @media (max-width: 992px) {
   .nav-large-screen-options {
     display: none;
+  }
+  .nav-bg {
+    margin-bottom: 30px;
   }
   .hamburger {
     display: block;

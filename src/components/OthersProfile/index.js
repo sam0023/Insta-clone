@@ -93,7 +93,7 @@ class OthersProfile extends Component {
   renderSuccessView = () => {
     const {details} = this.state
     return (
-      <div>
+      <div className="profile-bg">
         <CommonProfile
           details={details}
           profileAlt="user profile"
