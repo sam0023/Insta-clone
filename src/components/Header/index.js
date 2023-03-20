@@ -58,13 +58,30 @@ class Header extends Component {
   }
 
   renderSmOptions = () => {
-    const {showSearchBar} = this.state
+    const {showSearchBar, activeSearch} = this.state
     const {activePage} = this.props
     if (showSearchBar) {
       return (
         <>
-          <div>
-            <input />
+          <div className="search-container">
+            <input
+              type="search"
+              value={activeSearch}
+              onChange={this.updateSearch}
+              onKeyDown={this.requestUpdateSearch}
+              placeholder="Search Caption"
+              className="search"
+            />
+            <div className="search-icon-container">
+              <button
+                type="button"
+                data-testid="searchIcon"
+                onClick={this.requestUpdateSearch2}
+                className="search-icon-btn"
+              >
+                <FaSearch className="nav-search-icon" />
+              </button>
+            </div>
           </div>
         </>
       )

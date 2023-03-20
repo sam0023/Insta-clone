@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import Spinner from '../Spinner'
 import Post from '../Post'
 import FailureView from '../FailureView'
+import searchNotFound from '../../images/searchNotFound.png'
 import './index.css'
 
 const viewOptions = {
@@ -80,12 +81,18 @@ class SearchResults extends Component {
 
   renderPosts = () => {
     const {posts} = this.state
-    if (posts.length !== 0) {
+    if (posts.length === 0) {
       return (
-        <div>
-          <img src="../../images/search not found.png" alt="search not found" />
-          <h1>Search Not Found</h1>
-          <p>Try different keyword or search again</p>
+        <div className="search-not-found-bg">
+          <img
+            src={searchNotFound}
+            alt="search not found"
+            className="search-not-found-img"
+          />
+          <h1 className="search-not-found-title">Search Not Found</h1>
+          <p className="search-not-found-p">
+            Try different keyword or search again
+          </p>
         </div>
       )
     }

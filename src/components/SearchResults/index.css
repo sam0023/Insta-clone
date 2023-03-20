@@ -4,6 +4,8 @@
 .search-page-bg {
   max-width: 1040px;
   width: 100%;
+  font-family: 'Roboto';
+  font-style: normal;
   /* border-color: blue; */
 }
 .search-post-container {
@@ -15,6 +17,37 @@
 
   box-shadow: 0px 4px 16px rgba(123, 135, 148, 0.16);
   border-radius: 16px;
+}
+.search-not-found-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+}
+.search-not-found-img {
+  height: 409px;
+  width: 500.0003967285156px;
+}
+.search-not-found-title {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 48px;
+  /* identical to box height, or 150% */
+
+  text-align: center;
+
+  color: #262626;
+}
+.search-not-found-p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  /* identical to box height, or 160% */
+
+  text-align: center;
+
+  color: #989898;
 }
 .search-title {
   font-weight: 500;

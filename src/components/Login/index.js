@@ -1,7 +1,8 @@
 import {Redirect} from 'react-router-dom'
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import login from '../images/login.png'
+import loginPageLg from '../../images/loginPageLg.png'
+import websiteLogo from '../../images/websiteLogo.png'
 import './index.css'
 
 class Login extends Component {
@@ -61,31 +62,38 @@ class Login extends Component {
     }
     return (
       <div className="login-bg">
-        <div>
-          <img src={login} alt="website login" />
-          <img src="" alt="website logo" />
-          <h1>Insta Share</h1>
-          <form onSubmit={this.onSubmitForm}>
-            <label htmlFor="username">USERNAME</label>
+        <img src={loginPageLg} alt="website login" className="login-img" />
+        <div className="form-card">
+          <img src={websiteLogo} alt="website logo" className="login-logo" />
+          <h1 className="login-website-name">Insta Share</h1>
+          <form onSubmit={this.onSubmitForm} className="login-form">
+            <label htmlFor="username" className="form-label">
+              USERNAME
+            </label>
             <br />
             <input
               id="username"
               type="text"
               value={username}
               onChange={this.onChangeUsername}
+              className="form-input"
             />
             <br />
-            <label htmlFor="password">PASSWORD</label> <br />
+            <label htmlFor="password" className="form-label">
+              PASSWORD
+            </label>{' '}
+            <br />
             <input
               id="password"
               type="password"
               value={password}
               onChange={this.onChangePassword}
+              className="form-input"
             />
-            <br />
-            {errorMsg !== '' && <p>*{errorMsg}</p>}
-            <button type="submit">Login</button>
-            <p>rahul@2021</p>
+            {errorMsg !== '' && <p className="warning-msg">*{errorMsg}</p>}
+            <button className="login-btn" type="submit">
+              Login
+            </button>
           </form>
         </div>
       </div>
