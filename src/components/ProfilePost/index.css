@@ -26,7 +26,7 @@
   margin: 0px;
   padding: 0px;
   list-style: none;
-  align-self: center;
+  width: 100%;
   /* border: solid 5px black; */
 }
 @media (max-width: 992px) {
@@ -38,7 +38,7 @@
     margin: 0px;
     padding: 0px;
     list-style: none;
-    width: 80%;
+    width: 100%;
     /* border: solid 5px black; */
   }
   .profile-post {

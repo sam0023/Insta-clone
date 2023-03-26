@@ -20,6 +20,7 @@ class OthersProfile extends Component {
     details: {},
     showSearchResults: false,
     search: '',
+    showSearchPage: false,
   }
 
   componentDidMount() {
@@ -41,6 +42,10 @@ class OthersProfile extends Component {
   handleSuccessApi = data => {
     const updatedData = data.user_details
     this.setState({details: updatedData, activeView: viewOptions.success})
+  }
+
+  showSearchPage = e => {
+    this.setState({showSearchPage: e})
   }
 
   requestUserProfileApi = async () => {
@@ -81,8 +86,31 @@ class OthersProfile extends Component {
     </div>
   )
 
-  renderSuccessView = () => {
+  renderSearchView = () => {
     const {details} = this.state
+    return (
+      <>
+        <div className="search-page">
+          <p>Search appears here</p>
+        </div>
+        <div className="home-page-container2">
+          <CommonProfile
+            details={details}
+            profileAlt="my profile"
+            storyAlt="my story"
+            postAlt="my post"
+          />
+        </div>
+      </>
+    )
+  }
+
+  renderSuccessView = () => {
+    const {showSearchPage, details} = this.state
+
+    if (showSearchPage) {
+      return this.renderSearchView()
+    }
     return (
       <div className="profile-bg">
         <CommonProfile
@@ -117,6 +145,7 @@ class OthersProfile extends Component {
         <Header
           updateSearch={this.updateSearch}
           defaultView={this.defaultView}
+          showSearchPage={this.showSearchPage}
         />
         {showSearchResults ? (
           <SearchResults search={search} />

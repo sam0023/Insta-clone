@@ -6,10 +6,14 @@
   width: 100%;
   font-family: 'Roboto';
   font-style: normal;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* border-color: blue; */
 }
 .search-post-container {
-  background-color: aqua;
+  /* background-color: aqua; */
   list-style: none;
   padding: 30px;
   background: #ffffff;
@@ -19,11 +23,10 @@
   border-radius: 16px;
 }
 .search-not-found-bg {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  align-items: center;
+  justify-content: center; */
+  border-color: black;
 }
 .search-not-found-img {
   height: 409px;
@@ -34,7 +37,7 @@
   font-size: 32px;
   line-height: 48px;
   /* identical to box height, or 150% */
-
+  margin-bottom: 12px;
   text-align: center;
 
   color: #262626;
@@ -44,7 +47,7 @@
   font-size: 20px;
   line-height: 32px;
   /* identical to box height, or 160% */
-
+  margin-top: 0px;
   text-align: center;
 
   color: #989898;
@@ -63,5 +66,17 @@
   }
   .search-title {
     display: none;
+  }
+  .search-not-found-img {
+    height: 210px;
+    width: 258.0009460449219px;
+  }
+  .search-not-found-title {
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .search-not-found-p {
+    font-size: 16px;
+    line-height: 24px;
   }
 }

@@ -68,7 +68,7 @@ class SearchResults extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="" data-testid="loader">
       <Spinner />
     </div>
   )

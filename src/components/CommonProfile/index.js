@@ -9,11 +9,13 @@ const CommonProfile = props => {
   const {stories, posts} = details
 
   const renderPostsSection = () => {
-    if (posts.length === 0) {
+    if (posts.length !== 0) {
       return (
-        <div>
-          <BiCamera />
-          <h1>No Posts</h1>
+        <div className="no-post-bg">
+          <div className="cam-bg">
+            <BiCamera className="cam" />
+          </div>
+          <h1 className="cam-msg">No Posts</h1>
         </div>
       )
     }
@@ -47,14 +49,14 @@ const CommonProfile = props => {
             <ul className="profile-stats-container">
               <li className="stats-list">
                 <span className="stat">{details.posts_count}</span>
-                <p className="stat-title">Posts</p>
+                <p className="stat-title">posts</p>
               </li>
               <li className="stats-list">
                 <span className="stat">{details.followers_count}</span>
 
                 <p className="stat-title">followers</p>
               </li>
-              <li className="stats-list">
+              <li className="stats-list-last">
                 <span className="stat">{details.following_count}</span>
 
                 <p className="stat-title">following</p>

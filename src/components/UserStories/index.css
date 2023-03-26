@@ -81,7 +81,8 @@
 .slick-next:before {
   color: black;
 }
-
+.loader-container {
+}
 @media (max-width: 992px) {
   .slider-img {
     width: 54px;

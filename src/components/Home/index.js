@@ -24,8 +24,8 @@ class Home extends Component {
     this.setState({showSearchResults: false, showSearchPage: false})
   }
 
-  showSearchPage = () => {
-    this.setState({showSearchPage: true})
+  showSearchPage = e => {
+    this.setState({showSearchPage: e})
   }
 
   renderSearchView = () => (
@@ -63,6 +63,7 @@ class Home extends Component {
           updateSearch={this.updateSearch}
           defaultView={this.defaultView}
           showSearchPage={this.showSearchPage}
+          activePage="HOME"
         />
         {showSearchResults ? (
           <SearchResult search={search} />

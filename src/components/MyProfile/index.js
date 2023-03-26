@@ -21,6 +21,7 @@ class MyProfile extends Component {
     details: {},
     showSearchResults: false,
     search: '',
+    showSearchPage: false,
   }
 
   componentDidMount() {
@@ -29,6 +30,10 @@ class MyProfile extends Component {
 
   defaultView = () => {
     this.setState({showSearchResults: false})
+  }
+
+  showSearchPage = e => {
+    this.setState({showSearchPage: e})
   }
 
   updateSearch = value => {
@@ -81,9 +86,31 @@ class MyProfile extends Component {
     </div>
   )
 
-  renderSuccessView = () => {
+  renderSearchView = () => {
     const {details} = this.state
-    console.log(details)
+    return (
+      <>
+        <div className="search-page">
+          <p>Search appears here</p>
+        </div>
+        <div className="home-page-container2">
+          <CommonProfile
+            details={details}
+            profileAlt="my profile"
+            storyAlt="my story"
+            postAlt="my post"
+          />
+        </div>
+      </>
+    )
+  }
+
+  renderSuccessView = () => {
+    const {showSearchPage, details} = this.state
+
+    if (showSearchPage) {
+      return this.renderSearchView()
+    }
     return (
       <CommonProfile
         details={details}
@@ -116,6 +143,8 @@ class MyProfile extends Component {
         <Header
           updateSearch={this.updateSearch}
           defaultView={this.defaultView}
+          showSearchPage={this.showSearchPage}
+          activePage="PROFILE"
         />
         {showSearchResults ? (
           <SearchResults search={search} />

@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
 import {GiHamburgerMenu} from 'react-icons/gi'
+import {MdCancel} from 'react-icons/md'
 import Cookies from 'js-cookie'
 import logo from '../images/logo.png'
 import './index.css'
@@ -10,6 +11,7 @@ class Header extends Component {
   state = {
     activeSearch: '',
     showOptions: false,
+    showSmSearch: false,
   }
 
   requestUpdateSearch = event => {
@@ -21,11 +23,17 @@ class Header extends Component {
   }
 
   toggleOptions = () => {
-    this.setState(prev => ({showOptions: !prev.showOptions}))
+    this.setState(
+      {
+        showOptions: true,
+        showSmSearch: false,
+      },
+      this.requestShowSearchPage(false),
+    )
   }
 
   showSearchBar = () => {
-    this.setState({showSearchBar: true}, this.requestShowSearchPage)
+    this.setState({showSmSearch: true}, this.requestShowSearchPage(true))
   }
 
   requestUpdateSearch2 = () => {
@@ -51,36 +59,43 @@ class Header extends Component {
     this.setState({activeSearch: ''}, defaultView)
   }
 
-  requestShowSearchPage = () => {
+  onClickSmCancel = () => {
+    console.log('smcancel')
+    this.setState({showOptions: false})
+  }
+
+  requestShowSearchPage = e => {
     const {showSearchPage} = this.props
 
-    showSearchPage()
+    showSearchPage(e)
   }
 
   renderSmOptions = () => {
-    const {showSearchBar, activeSearch} = this.state
-    const {activePage} = this.props
-    if (showSearchBar) {
+    const {showSmSearch, activeSearch} = this.state
+
+    if (showSmSearch) {
       return (
         <>
-          <div className="search-container">
-            <input
-              type="search"
-              value={activeSearch}
-              onChange={this.updateSearch}
-              onKeyDown={this.requestUpdateSearch}
-              placeholder="Search Caption"
-              className="search"
-            />
-            <div className="search-icon-container">
-              <button
-                type="button"
-                data-testid="searchIcon"
-                onClick={this.requestUpdateSearch2}
-                className="search-icon-btn"
-              >
-                <FaSearch className="nav-search-icon" />
-              </button>
+          <div className="sm-search-bg">
+            <div className="sm-search-container">
+              <input
+                type="search"
+                value={activeSearch}
+                onChange={this.updateSearch}
+                onKeyDown={this.requestUpdateSearch}
+                placeholder="Search Caption"
+                className="search sm-search"
+              />
+              <div className="search-icon-container sm-search-icon">
+                <button
+                  type="button"
+                  data-testid="searchIcon"
+                  onClick={this.requestUpdateSearch2}
+                  className="search-icon-btn"
+                >
+                  <FaSearch className="nav-search-icon" />
+                </button>
+              </div>
             </div>
           </div>
         </>
@@ -89,14 +104,7 @@ class Header extends Component {
     return (
       <ul className="nav-sm-options-container">
         <li>
-          <Link
-            to="/"
-            className={`${
-              activePage === 'HOME'
-                ? 'active-header-section'
-                : 'header-section flex'
-            }`}
-          >
+          <Link to="/" className="header-section">
             Home
           </Link>
         </li>
@@ -110,20 +118,22 @@ class Header extends Component {
           </button>
         </li>
         <li>
-          <Link
-            to="/my-profile"
-            className={`${
-              activePage === 'HOME'
-                ? 'active-header-section '
-                : 'header-section'
-            }`}
-          >
+          <Link to="/my-profile" className="header-section">
             Profile
           </Link>
         </li>
         <li>
           <button type="button" className="logout-btn ">
             Logout
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            className="sm-cancel-btn"
+            onClick={this.onClickSmCancel}
+          >
+            <MdCancel className="sm-cancel" />
           </button>
         </li>
       </ul>
@@ -137,7 +147,7 @@ class Header extends Component {
     const {activeSearch, showOptions} = this.state
     return (
       <nav className="nav-bg">
-        <div>
+        <div className="t1">
           <div className="nav-lg-container">
             <div className="nav-logo-container">
               <Link to="/" onClick={this.requestDefaultView}>
@@ -213,8 +223,8 @@ class Header extends Component {
               <GiHamburgerMenu className="hamburger" />
             </button>
           </div>
-          <div className="">
-            {showOptions === false && this.renderSmOptions()}
+          <div className="sm-options-container">
+            {showOptions && this.renderSmOptions()}
           </div>
         </div>
       </nav>
