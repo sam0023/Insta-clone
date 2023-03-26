@@ -112,14 +112,12 @@ class OthersProfile extends Component {
       return this.renderSearchView()
     }
     return (
-      <div className="profile-bg">
-        <CommonProfile
-          details={details}
-          profileAlt="user profile"
-          storyAlt="user story"
-          postAlt="user post"
-        />
-      </div>
+      <CommonProfile
+        details={details}
+        profileAlt="user profile"
+        storyAlt="user story"
+        postAlt="user post"
+      />
     )
   }
 
@@ -141,7 +139,7 @@ class OthersProfile extends Component {
   render() {
     const {showSearchResults, search} = this.state
     return (
-      <div>
+      <div className="profile-bg">
         <Header
           updateSearch={this.updateSearch}
           defaultView={this.defaultView}

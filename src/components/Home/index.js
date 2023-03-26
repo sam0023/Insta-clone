@@ -1,5 +1,6 @@
 import {Component} from 'react'
 
+import {FaSearch} from 'react-icons/fa'
 import Header from '../Header'
 import UserStories from '../UserStories'
 
@@ -31,6 +32,9 @@ class Home extends Component {
   renderSearchView = () => (
     <>
       <div className="search-page">
+        <div>
+          <FaSearch className="sm-search-page-icon" />
+        </div>
         <p>Search appears here</p>
       </div>
       <div className="home-page-container2">

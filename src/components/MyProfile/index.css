@@ -2,9 +2,15 @@
   background: #fafafa;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   font-family: 'Roboto';
   font-style: normal;
+  min-height: 90vh;
   /* border: solid 3px red; */
+}
+.profile-views-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

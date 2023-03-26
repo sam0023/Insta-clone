@@ -4,7 +4,7 @@ import {FaSearch} from 'react-icons/fa'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {MdCancel} from 'react-icons/md'
 import Cookies from 'js-cookie'
-import logo from '../images/logo.png'
+import websiteLogo from '../../images/websiteLogo.png'
 import './index.css'
 
 class Header extends Component {
@@ -151,7 +151,11 @@ class Header extends Component {
           <div className="nav-lg-container">
             <div className="nav-logo-container">
               <Link to="/" onClick={this.requestDefaultView}>
-                <img src={logo} alt="website logo" className="website-logo" />
+                <img
+                  src={websiteLogo}
+                  alt="website logo"
+                  className="website-logo"
+                />
               </Link>
               <h1 className="logo-name">Insta Share</h1>
             </div>

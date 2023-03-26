@@ -1,3 +1,6 @@
+/* * {
+  border: solid 1px black;
+} */
 .home-bg {
   background: #fafafa;
   min-height: 100vh;
@@ -19,11 +22,19 @@
 }
 
 .search-page {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
 }
 
 .home-page-container2 {
   display: none;
+}
+
+.sm-search-page-icon {
+  /* background-color: black;
+  color: red; */
 }
 
 @media (min-width: 992px) {

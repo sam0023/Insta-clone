@@ -74,7 +74,7 @@ class SearchResults extends Component {
   )
 
   renderFailureView = () => (
-    <div>
+    <div className="home-failure-bg">
       <FailureView apiRequest={this.requestSearchPostApi} />
     </div>
   )
@@ -97,14 +97,14 @@ class SearchResults extends Component {
       )
     }
     return (
-      <>
+      <div className="search-bg-t1">
         <h1 className="search-title">Search Results</h1>
-        <div className="search-post-container">
+        <ul className="search-post-container">
           {posts.map(eachItem => (
             <Post key={eachItem.postId} details={eachItem} className="" />
           ))}
-        </div>
-      </>
+        </ul>
+      </div>
     )
   }
 

@@ -26,3 +26,10 @@
   align-items: center;
   min-height: 40vh;
 }
+.home-failure-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}

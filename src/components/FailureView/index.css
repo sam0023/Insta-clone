@@ -1,0 +1,23 @@
+.failure-view {
+  height: 38px;
+  width: 43.99729919433594px;
+}
+.fail-msg {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  color: #262626;
+}
+.fail-retry-btn {
+  padding: 8px 24px;
+  gap: 8px;
+  border: none;
+  font-weight: 500;
+  font-size: 12px;
+  height: 32px;
+  color: #ffffff;
+  background: #4094ef;
+  border-radius: 8px;
+}

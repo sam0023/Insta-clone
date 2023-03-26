@@ -67,7 +67,7 @@ class HomePagePosts extends Component {
   )
 
   renderFailureView = () => (
-    <div>
+    <div className="home-failure-bg">
       <FailureView apiRequest={this.requestPostsApi} />
     </div>
   )

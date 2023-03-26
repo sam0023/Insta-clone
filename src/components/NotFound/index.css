@@ -49,3 +49,16 @@
   color: #ffffff;
   text-decoration: none;
 }
+@media (max-width: 480px) {
+  .not-found-img {
+    height: 172.99755859375px;
+    width: 156.9962615966797px;
+  }
+  .not-found-header {
+    font-size: 20px;
+  }
+  .not-found-msg {
+    font-size: 16px;
+    width: 80%;
+  }
+}

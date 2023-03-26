@@ -9,7 +9,7 @@ const CommonProfile = props => {
   const {stories, posts} = details
 
   const renderPostsSection = () => {
-    if (posts.length !== 0) {
+    if (posts.length === 0) {
       return (
         <div className="no-post-bg">
           <div className="cam-bg">

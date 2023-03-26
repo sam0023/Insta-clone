@@ -24,7 +24,7 @@
 
   /* background-color: aqua; */
   margin-right: 64px;
-  border-radius: 50px;
+  border-radius: 90px;
   /* background: #c4c4c4; */
 }
 .profile-stats-container {
@@ -142,9 +142,9 @@
   display: flex;
   justify-content: center;
 }
-* {
+/* * {
   border: solid 1px red;
-}
+} */
 /* .profile-posts-container {
   list-style: none;
   padding: 0px;

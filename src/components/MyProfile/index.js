@@ -146,11 +146,13 @@ class MyProfile extends Component {
           showSearchPage={this.showSearchPage}
           activePage="PROFILE"
         />
+        {/* <div className="profile-views-bg"> */}
         {showSearchResults ? (
           <SearchResults search={search} />
         ) : (
           this.renderFinalView()
         )}
+        {/* </div> */}
       </div>
     )
   }

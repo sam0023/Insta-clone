@@ -1,16 +1,18 @@
 /* * {
   border: solid 1px black;
 } */
+.search-bg-t1 {
+}
 .search-page-bg {
   max-width: 1040px;
   width: 100%;
   font-family: 'Roboto';
   font-style: normal;
-  height: 80vh;
+  min-height: 80vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border-color: blue; */
 }
 .search-post-container {
   /* background-color: aqua; */
@@ -18,7 +20,7 @@
   padding: 30px;
   background: #ffffff;
   /* Shadow 1 */
-
+  list-style: none;
   box-shadow: 0px 4px 16px rgba(123, 135, 148, 0.16);
   border-radius: 16px;
 }

@@ -1,3 +1,4 @@
+import alertTriangle from '../../images/alertTriangle.png'
 import './index.css'
 
 const FailureView = props => {
@@ -9,10 +10,10 @@ const FailureView = props => {
 
   return (
     <>
-      <img src="" alt="failure view" />
-      <p>Something went wrong. Please try again</p>
+      <img src={alertTriangle} alt="failure view" />
+      <p className="fail-msg">Something went wrong. Please try again</p>
 
-      <button type="button" onClick={requestApi()}>
+      <button type="button" className="fail-retry-btn" onClick={requestApi()}>
         Try again
       </button>
     </>

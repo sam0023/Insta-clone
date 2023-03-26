@@ -62,7 +62,7 @@ class UserStories extends Component {
   )
 
   renderFailureView = () => (
-    <div>
+    <div className="home-failure-bg">
       <FailureView apiRequest={this.requestUserStoriesApi} />
     </div>
   )
