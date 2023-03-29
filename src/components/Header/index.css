@@ -221,7 +221,7 @@
     font-weight: 500;
     color: #262626;
     margin-right: 18px;
-    color: #4094ef;
+    /* color: #4094ef; */
   }
 }
 @media (max-width: 480px) {

@@ -22,6 +22,7 @@ class MyProfile extends Component {
     showSearchResults: false,
     search: '',
     showSearchPage: false,
+    updateSearch: true,
   }
 
   componentDidMount() {
@@ -37,7 +38,11 @@ class MyProfile extends Component {
   }
 
   updateSearch = value => {
-    this.setState({search: value, showSearchResults: true})
+    this.setState(prev => ({
+      search: value,
+      showSearchResults: true,
+      updateSearch: !prev.updateSearch,
+    }))
   }
 
   handleFailureApi = () => {
@@ -63,10 +68,10 @@ class MyProfile extends Component {
         Authorization: `Bearer ${accessToken}`,
       },
     }
-    console.log('in my profile')
+
     const response = await fetch(api, option)
     const data = await response.json()
-    console.log(response)
+
     if (response.ok) {
       this.handleSuccessApi(data)
     } else {
@@ -137,7 +142,7 @@ class MyProfile extends Component {
   }
 
   render() {
-    const {showSearchResults, search} = this.state
+    const {showSearchResults, search, updateSearch} = this.state
     return (
       <div className="profile-bg">
         <Header
@@ -148,7 +153,7 @@ class MyProfile extends Component {
         />
         {/* <div className="profile-views-bg"> */}
         {showSearchResults ? (
-          <SearchResults search={search} />
+          <SearchResults search={search} updateSearch={updateSearch} />
         ) : (
           this.renderFinalView()
         )}

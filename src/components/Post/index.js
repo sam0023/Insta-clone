@@ -29,22 +29,22 @@ class Post extends Component {
       },
     }
 
-    console.log(body)
     const api = `https://apis.ccbp.in/insta-share/posts/${postId}/like`
 
     const response = await fetch(api, option)
-    console.log(`like response`)
-    console.log(response)
-    if (response.ok) {
-      this.updateLikeBtn()
-      console.log('liked')
+
+    if (!response.ok) {
+      this.setState(prev => ({likeStatus: !prev.likeStatus}))
     }
   }
 
   updateLikeBtn = () => {
-    this.setState(prev => ({
-      likeStatus: !prev.likeStatus,
-    }))
+    this.setState(
+      prev => ({
+        likeStatus: !prev.likeStatus,
+      }),
+      this.requestPostLikeApi,
+    )
   }
 
   render() {
@@ -63,13 +63,13 @@ class Post extends Component {
     const totalLikes = likeStatus ? likesCount + 1 : likesCount
     const likeIcon = likeStatus ? (
       <FcLike
-        onClick={this.requestPostLikeApi}
+        onClick={this.updateLikeBtn}
         data-testid="unLikeIcon"
         className="like-icon"
       />
     ) : (
       <BsHeart
-        onClick={this.requestPostLikeApi}
+        onClick={this.updateLikeBtn}
         data-testid="likeIcon"
         className="like-icon"
       />
