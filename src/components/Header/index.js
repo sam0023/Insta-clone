@@ -111,6 +111,7 @@ class Header extends Component {
             className={`${
               activePage === 'HOME' ? 'active-header-section' : 'header-section'
             }`}
+            onClick={this.requestDefaultView}
           >
             Home
           </Link>
@@ -132,6 +133,7 @@ class Header extends Component {
                 ? 'active-header-section'
                 : 'header-section'
             }`}
+            onClick={this.requestDefaultView}
           >
             Profile
           </Link>
