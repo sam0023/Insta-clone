@@ -21,6 +21,7 @@ class OthersProfile extends Component {
     showSearchResults: false,
     search: '',
     showSearchPage: false,
+    updateSearch: true,
   }
 
   componentDidMount() {
@@ -32,7 +33,11 @@ class OthersProfile extends Component {
   }
 
   updateSearch = value => {
-    this.setState({search: value, showSearchResults: true})
+    this.setState(prev => ({
+      search: value,
+      showSearchResults: true,
+      updateSearch: !prev.updateSearch,
+    }))
   }
 
   handleFailureApi = () => {
@@ -137,7 +142,7 @@ class OthersProfile extends Component {
   }
 
   render() {
-    const {showSearchResults, search} = this.state
+    const {showSearchResults, search, updateSearch} = this.state
     return (
       <div className="profile-bg">
         <Header
@@ -146,7 +151,7 @@ class OthersProfile extends Component {
           showSearchPage={this.showSearchPage}
         />
         {showSearchResults ? (
-          <SearchResults search={search} />
+          <SearchResults search={search} updateSearch={updateSearch} />
         ) : (
           this.renderFinalView()
         )}

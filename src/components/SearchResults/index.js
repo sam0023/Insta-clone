@@ -24,6 +24,14 @@ class SearchResults extends Component {
     this.requestSearchPostApi()
   }
 
+  componentDidUpdate(prevProps) {
+    console.log(prevProps)
+    const {updateSearch} = this.props
+    if (updateSearch === !prevProps.updateSearch) {
+      this.requestSearchPostApi()
+    }
+  }
+
   handleSuccessApi = data => {
     const {posts} = data
     const updatedData = posts.map(eachPost => ({
@@ -45,6 +53,8 @@ class SearchResults extends Component {
 
   requestSearchPostApi = async () => {
     const {search} = this.props
+    console.log('in posts api')
+    console.log(search)
     this.setState({activeView: viewOptions.loading})
 
     const api = `https://apis.ccbp.in/insta-share/posts?search=${search}`
@@ -58,7 +68,7 @@ class SearchResults extends Component {
     }
 
     const response = await fetch(api, option)
-    console.log(response)
+    // console.log(response)
     const data = await response.json()
     if (response.ok) {
       this.handleSuccessApi(data)

@@ -40,6 +40,7 @@ class Header extends Component {
     const {updateSearch} = this.props
     const {activeSearch} = this.state
     updateSearch(activeSearch)
+    console.log('duhododhfvodfvndf')
   }
 
   updateSearch = event => {
@@ -72,6 +73,7 @@ class Header extends Component {
 
   renderSmOptions = () => {
     const {showSmSearch, activeSearch} = this.state
+    const {activePage} = this.props
 
     if (showSmSearch) {
       return (
@@ -104,7 +106,12 @@ class Header extends Component {
     return (
       <ul className="nav-sm-options-container">
         <li>
-          <Link to="/" className="header-section">
+          <Link
+            to="/"
+            className={`${
+              activePage === 'HOME' ? 'active-header-section' : 'header-section'
+            }`}
+          >
             Home
           </Link>
         </li>
@@ -118,12 +125,19 @@ class Header extends Component {
           </button>
         </li>
         <li>
-          <Link to="/my-profile" className="header-section">
+          <Link
+            to="/my-profile"
+            className={`${
+              activePage === 'PROFILE'
+                ? 'active-header-section'
+                : 'header-section'
+            }`}
+          >
             Profile
           </Link>
         </li>
         <li>
-          <button type="button" className="logout-btn ">
+          <button type="button" className="logout-btn " onClick={this.logout}>
             Logout
           </button>
         </li>

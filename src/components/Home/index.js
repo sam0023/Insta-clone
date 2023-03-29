@@ -15,10 +15,15 @@ class Home extends Component {
     showSearchResults: false,
     showSearchPage: false,
     search: '',
+    updateSearch: true,
   }
 
   updateSearch = value => {
-    this.setState({search: value, showSearchResults: true})
+    this.setState(prev => ({
+      search: value,
+      showSearchResults: true,
+      updateSearch: !prev.updateSearch,
+    }))
   }
 
   defaultView = () => {
@@ -30,7 +35,7 @@ class Home extends Component {
   }
 
   renderSearchView = () => (
-    <>
+    <div className="search-page-bg">
       <div className="search-page">
         <div>
           <FaSearch className="sm-search-page-icon" />
@@ -41,7 +46,7 @@ class Home extends Component {
         <UserStories />
         <HomePagePosts />
       </div>
-    </>
+    </div>
   )
 
   renderFinalView = () => {
@@ -59,8 +64,8 @@ class Home extends Component {
   }
 
   render() {
-    console.log('in home')
-    const {showSearchResults, search} = this.state
+    const {showSearchResults, search, updateSearch} = this.state
+
     return (
       <div className="home-bg">
         <Header
@@ -70,7 +75,7 @@ class Home extends Component {
           activePage="HOME"
         />
         {showSearchResults ? (
-          <SearchResult search={search} />
+          <SearchResult search={search} updateSearch={updateSearch} />
         ) : (
           this.renderFinalView()
         )}
