@@ -77,6 +77,7 @@ class Login extends Component {
               value={username}
               onChange={this.onChangeUsername}
               className="form-input"
+              placeholder="USERNAME"
             />
             <br />
             <label htmlFor="password" className="form-label">
@@ -89,6 +90,7 @@ class Login extends Component {
               value={password}
               onChange={this.onChangePassword}
               className="form-input"
+              placeholder="PASSWORD"
             />
             {errorMsg !== '' && <p className="warning-msg">*{errorMsg}</p>}
             <button className="login-btn" type="submit">
