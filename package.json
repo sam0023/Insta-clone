@@ -39,6 +39,7 @@
     "test": "react-scripts test",
     "lint": "eslint .",
     "lint:fix": "eslint --fix src/",
+    "lint-staged": "lint-staged",
     "format": "prettier --write \"./src\"",
     "run-all": "npm-run-all --parallel test lint:fix"
   },
