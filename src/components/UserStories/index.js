@@ -31,7 +31,7 @@ class UserStories extends Component {
       userName: eachItem.user_name,
       storyUrl: eachItem.story_url,
     }))
-    console.log(updatedStories)
+    // console.log(updatedStories)
     this.setState({activeView: viewOptions.success, stories: updatedStories})
   }
 
@@ -47,7 +47,7 @@ class UserStories extends Component {
 
     const response = await fetch(api, option)
     const data = await response.json()
-    console.log(response)
+    // console.log(response)
     if (response.ok) {
       this.handleSuccessApi(data)
     } else {

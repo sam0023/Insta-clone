@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-
+import HeaderContext from '../../context/HeaderContext'
 import Spinner from '../Spinner'
 import Header from '../Header'
 import CommonProfile from '../CommonProfile'
@@ -19,31 +19,30 @@ class MyProfile extends Component {
   state = {
     activeView: viewOptions.loading,
     details: {},
-    showSearchResults: false,
-    search: '',
-    showSearchPage: false,
-    updateSearch: true,
+    // showSearchResults: false,
+
+    // updateSearch: true,
   }
 
   componentDidMount() {
     this.requestUserProfileApi()
   }
 
-  defaultView = () => {
-    this.setState({showSearchResults: false})
-  }
+  // defaultView = () => {
+  //   this.setState({showSearchResults: false})
+  // }
 
-  showSearchPage = e => {
-    this.setState({showSearchPage: e})
-  }
+  // showSearchPage = e => {
+  //   this.setState({showSearchPage: e})
+  // }
 
-  updateSearch = value => {
-    this.setState(prev => ({
-      search: value,
-      showSearchResults: true,
-      updateSearch: !prev.updateSearch,
-    }))
-  }
+  // updateSearch = value => {
+  //   this.setState(prev => ({
+  //     search: value,
+  //     showSearchResults: true,
+  //     updateSearch: !prev.updateSearch,
+  //   }))
+  // }
 
   handleFailureApi = () => {
     this.setState({activeView: viewOptions.failure})
@@ -91,31 +90,31 @@ class MyProfile extends Component {
     </div>
   )
 
-  renderSearchView = () => {
-    const {details} = this.state
-    return (
-      <>
-        <div className="search-page">
-          <p>Search appears here</p>
-        </div>
-        <div className="home-page-container2">
-          <CommonProfile
-            details={details}
-            profileAlt="my profile"
-            storyAlt="my story"
-            postAlt="my post"
-          />
-        </div>
-      </>
-    )
-  }
+  // renderSearchView = () => {
+  //   const {details} = this.state
+  //   return (
+  //     <>
+  //       <div className="search-page">
+  //         <p>Search appears here</p>
+  //       </div>
+  //       <div className="home-page-container2">
+  //         <CommonProfile
+  //           details={details}
+  //           profileAlt="my profile"
+  //           storyAlt="my story"
+  //           postAlt="my post"
+  //         />
+  //       </div>
+  //     </>
+  //   )
+  // }
 
   renderSuccessView = () => {
-    const {showSearchPage, details} = this.state
+    const {details} = this.state
 
-    if (showSearchPage) {
-      return this.renderSearchView()
-    }
+    // if (showSearchPage) {
+    //   return this.renderSearchView()
+    // }
     return (
       <CommonProfile
         details={details}
@@ -142,23 +141,24 @@ class MyProfile extends Component {
   }
 
   render() {
-    const {showSearchResults, search, updateSearch} = this.state
+    // const {showSearchResults, search, updateSearch} = this.state
     return (
-      <div className="profile-bg">
-        <Header
-          updateSearch={this.updateSearch}
-          defaultView={this.defaultView}
-          showSearchPage={this.showSearchPage}
-          activePage="PROFILE"
-        />
-        {/* <div className="profile-views-bg"> */}
-        {showSearchResults ? (
-          <SearchResults search={search} updateSearch={updateSearch} />
-        ) : (
-          this.renderFinalView()
-        )}
-        {/* </div> */}
-      </div>
+      <HeaderContext.Consumer>
+        {value => {
+          const {showSearchResults, search, updateSearchResults} = value
+          return (
+            <div className="profile-bg">
+              <Header activePage="PROFILE" />
+
+              {showSearchResults ? (
+                <SearchResults search={search} update={updateSearchResults} />
+              ) : (
+                this.renderFinalView()
+              )}
+            </div>
+          )
+        }}
+      </HeaderContext.Consumer>
     )
   }
 }

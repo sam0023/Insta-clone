@@ -1,9 +1,9 @@
 import {Component} from 'react'
-
 import Cookies from 'js-cookie'
 import Spinner from '../Spinner'
 import Post from '../Post'
 import FailureView from '../FailureView'
+// import HeaderContext from '../../context/HeaderContext'
 import searchNotFound from '../../images/searchNotFound.png'
 import './index.css'
 
@@ -25,9 +25,9 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps)
-    const {updateSearch} = this.props
-    if (updateSearch === !prevProps.updateSearch) {
+    const {update} = this.props
+
+    if (update && prevProps.update !== update) {
       this.requestSearchPostApi()
     }
   }
@@ -53,10 +53,8 @@ class SearchResults extends Component {
 
   requestSearchPostApi = async () => {
     const {search} = this.props
-    console.log('in posts api')
-    console.log(search)
-    this.setState({activeView: viewOptions.loading})
-
+    // console.log(search1)
+    // console.log(`active search is ${search1}`)
     const api = `https://apis.ccbp.in/insta-share/posts?search=${search}`
 
     const accessToken = Cookies.get('jwt_token')
@@ -124,7 +122,7 @@ class SearchResults extends Component {
 
   renderFinalView = () => {
     const {activeView} = this.state
-    console.log(activeView)
+
     switch (activeView) {
       case viewOptions.loading:
         return this.renderLoadingView()
@@ -139,6 +137,98 @@ class SearchResults extends Component {
 
   render() {
     return this.renderFinalView()
+
+    // return this.renderFinalView()
   }
 }
+
+// const SearchResults = () => {
+//   const renderLoadingView = () => (
+//     <div className="" data-testid="loader">
+//       <Spinner />
+//     </div>
+//   )
+
+//   const renderPosts = posts => {
+//     console.log('in rendering search post')
+//     if (posts.length === 0) {
+//       return (
+//         <div className="search-not-found-bg">
+//           <img
+//             src={searchNotFound}
+//             alt="search not found"
+//             className="search-not-found-img"
+//           />
+//           <h1 className="search-not-found-title">Search Not Found</h1>
+//           <p className="search-not-found-p">
+//             Try different keyword or search again
+//           </p>
+//         </div>
+//       )
+//     }
+//     return (
+//       <div className="search-bg-t1">
+//         <h1 className="search-title">Search Results</h1>
+//         <ul className="search-post-container">
+//           {posts.map(eachItem => (
+//             <Post key={eachItem.postId} details={eachItem} className="" />
+//           ))}
+//         </ul>
+//       </div>
+//     )
+//   }
+
+//   const renderSuccessView = posts => (
+//     <div className="search-page-bg">{renderPosts(posts)}</div>
+//   )
+
+//   const handleSuccessApi = data => {
+//     const {posts} = data
+//     const updatedData = posts.map(eachPost => ({
+//       postId: eachPost.post_id,
+//       userId: eachPost.user_id,
+//       userName: eachPost.user_name,
+//       profilePic: eachPost.profile_pic,
+//       postDetails: eachPost.post_details,
+//       likesCount: eachPost.likes_count,
+//       comments: eachPost.comments,
+//       createdAt: eachPost.created_at,
+//     }))
+
+//     return renderSuccessView(updatedData)
+//   }
+
+//   const renderFailureView = api => (
+//     <div className="home-failure-bg">
+//       <FailureView apiRequest={api} />
+//     </div>
+//   )
+
+//   return (
+//     <HeaderContext.Consumer>
+//       {value => {
+//         // return <h1>Bye</h1>
+//         const {
+//           searchResultsApiResponse,
+//           searchResultsPageStatus,
+//           requestSearchResultsApi,
+//         } = value
+//         console.log('1')
+//         console.log(searchResultsPageStatus)
+//         if (searchResultsPageStatus === 'LOADING') {
+//           console.log('loading view fine')
+//           return renderLoadingView()
+//         }
+//         if (searchResultsPageStatus === 'SUCCESS') {
+//           return handleSuccessApi(searchResultsApiResponse)
+//         }
+//         if (searchResultsPageStatus === 'FAILURE') {
+//           return renderFailureView(requestSearchResultsApi)
+//         }
+//         return null
+//       }}
+//     </HeaderContext.Consumer>
+//     // <h1>Hi</h1>
+//   )
+// }
 export default SearchResults
