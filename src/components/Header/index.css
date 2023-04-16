@@ -1,20 +1,19 @@
 /* * {
   border: solid 1px red;
 } */
-.nav-dark-theme{
-  background-color: 03001C;
+.nav-dark-theme {
+  background-color: 03001c;
   color: #e7e3e3;
   border-bottom: solid 1px #727274;
-   
 }
-.nav-light-theme{
-   background-color: #ffffff;
-   color: #262626;
+.nav-light-theme {
+  background-color: #ffffff;
+  color: #262626;
 }
-.nav-link-dark-theme{
+.nav-link-dark-theme {
   color: #e7e3e3;
 }
-.nav-link-light-theme{
+.nav-link-light-theme {
   color: #262626;
 }
 .nav-lg-container {
