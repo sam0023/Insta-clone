@@ -57,9 +57,15 @@ class Home extends Component {
     return (
       <HeaderContext.Consumer>
         {value => {
-          const {showSearchResults, search, updateSearchResults} = value
+          const {
+            showSearchResults,
+            search,
+            updateSearchResults,
+            isDarkTheme,
+          } = value
+          const homeTheme = isDarkTheme ? 'home-bg-dark' : 'home-bg-light'
           return (
-            <div className="home-bg">
+            <div className={`home-bg  ${homeTheme}`}>
               <Header activePage="HOME" />
               {showSearchResults ? (
                 <SearchResult search={search} update={updateSearchResults} />

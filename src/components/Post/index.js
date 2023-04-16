@@ -5,6 +5,7 @@ import {BsHeart} from 'react-icons/bs'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
 import {FcLike} from 'react-icons/fc'
+import HeaderContext from '../../context/HeaderContext'
 import './index.css'
 
 class Post extends Component {
@@ -75,43 +76,60 @@ class Post extends Component {
       />
     )
     return (
-      <li className="post-container">
-        <div className="post-profile-section">
-          <Link to={`/users/${userId}`} className="post-link">
-            <div className="post-profile-img-container">
-              <img
-                src={profilePic}
-                alt="post author profile"
-                className="post-author-img"
-              />
-            </div>
+      <HeaderContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const postTheme = isDarkTheme ? 'post-dark-theme' : 'post-light-theme'
+          const postProfileTheme = isDarkTheme
+            ? 'post-profile-dark-theme'
+            : 'post-profile-light-theme'
+          return (
+            <li className={`post-container ${postTheme}`}>
+              <div className="post-profile-section">
+                <Link to={`/users/${userId}`} className="post-link">
+                  <div className="post-profile-img-container">
+                    <img
+                      src={profilePic}
+                      alt="post author profile"
+                      className="post-author-img"
+                    />
+                  </div>
 
-            <h1 className="p">{userName}</h1>
-          </Link>
-        </div>
-        <div className="post-img-container ">
-          <img src={postDetails.image_url} alt="post" className="post-img" />
-        </div>
-        <div className="post-footer">
-          <div className="icons-container">
-            {likeIcon}
+                  <h1 className={`p ${postProfileTheme}`}>{userName}</h1>
+                </Link>
+              </div>
+              <div className="post-img-container ">
+                <img
+                  src={postDetails.image_url}
+                  alt="post"
+                  className="post-img"
+                />
+              </div>
+              <div className="post-footer">
+                <div className="icons-container">
+                  {likeIcon}
 
-            <FaRegComment className="comment-icon" />
-            <BiShareAlt className="share-icon" />
-          </div>
-          <p className="likes-count">{totalLikes} likes</p>
-          <p className="caption-text">{postDetails.caption}</p>
-          <ul className="comment-section">
-            {comments.map(eachItem => (
-              <li key={eachItem.user_name} className="comment-list">
-                <span className="comment-author">{eachItem.user_name} </span>
-                <p className="comment">{eachItem.comment}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="post-time">{createdAt}</p>
-        </div>
-      </li>
+                  <FaRegComment className="comment-icon" />
+                  <BiShareAlt className="share-icon" />
+                </div>
+                <p className="likes-count">{totalLikes} likes</p>
+                <p className="caption-text">{postDetails.caption}</p>
+                <ul className="comment-section">
+                  {comments.map(eachItem => (
+                    <li key={eachItem.user_name} className="comment-list">
+                      <span className="comment-author">
+                        {eachItem.user_name}{' '}
+                      </span>
+                      <p className="comment">{eachItem.comment}</p>
+                    </li>
+                  ))}
+                </ul>
+                <p className="post-time">{createdAt}</p>
+              </div>
+            </li>
+          )
+        }}
+      </HeaderContext.Consumer>
     )
   }
 }

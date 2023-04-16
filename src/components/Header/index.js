@@ -64,6 +64,7 @@ class Header extends Component {
             updateSearch,
             updateShowSearchResults,
             // requestSearchResultsApi,
+            isDarkTheme,
           } = value
 
           const onUpdateSearch = event => {
@@ -85,6 +86,10 @@ class Header extends Component {
           const defaultView = () => {
             updateShowSearchResults(false)
           }
+
+          const navLinkTheme = isDarkTheme
+            ? 'nav-link-dark-theme'
+            : 'nav-link-light-theme'
 
           if (showSmSearch) {
             return (
@@ -121,8 +126,8 @@ class Header extends Component {
                   to="/"
                   className={`${
                     activePage === 'HOME'
-                      ? 'active-header-section'
-                      : 'header-section'
+                      ? `active-header-section ${navLinkTheme} `
+                      : `header-section ${navLinkTheme} `
                   }`}
                   onClick={defaultView}
                 >
@@ -133,7 +138,7 @@ class Header extends Component {
                 <button
                   type="button"
                   onClick={this.showSearchBar}
-                  className="sm-search-option-btn"
+                  className={`sm-search-option-btn ${navLinkTheme}`}
                 >
                   Search
                 </button>
@@ -143,8 +148,8 @@ class Header extends Component {
                   to="/my-profile"
                   className={`${
                     activePage === 'PROFILE'
-                      ? 'active-header-section'
-                      : 'header-section'
+                      ? `active-header-section ${navLinkTheme} `
+                      : `header-section ${navLinkTheme} `
                   }`}
                   onClick={defaultView}
                 >
@@ -166,7 +171,7 @@ class Header extends Component {
                   className="sm-cancel-btn"
                   onClick={this.onClickSmCancel}
                 >
-                  <MdCancel className="sm-cancel" />
+                  <MdCancel className={`sm-cancel ${navLinkTheme}`} />
                 </button>
               </li>
             </ul>
@@ -179,12 +184,7 @@ class Header extends Component {
   render() {
     const {activePage} = this.props
 
-    const {
-      // activeSearch,
-      showOptions,
-      // showSearchResults,
-      // toggleSearchResults,
-    } = this.state
+    const {showOptions} = this.state
     return (
       <HeaderContext.Consumer>
         {value => {
@@ -192,7 +192,8 @@ class Header extends Component {
             search,
             updateSearch,
             updateShowSearchResults,
-            // requestSearchResultsApi,
+            toggleTheme,
+            isDarkTheme,
           } = value
 
           const onUpdateSearch = event => {
@@ -202,27 +203,26 @@ class Header extends Component {
           const onShowSearchResults1 = event => {
             if (event.key === 'Enter') {
               updateShowSearchResults(true)
-              // requestSearchResultsApi()
             }
           }
 
           const onShowSearchResults2 = () => {
             updateShowSearchResults(true)
-            // requestSearchResultsApi()
           }
-
-          // const onShowSearchResults = () => {
-          //   const {updateSearch} = this.props
-          //   const {activeSearch} = this.state
-          //   updateSearch(activeSearch)
-          // }
 
           const defaultView = () => {
             updateShowSearchResults(false)
           }
 
+          const onToggleTheme = () => {
+            toggleTheme()
+          }
+          const navTheme = isDarkTheme ? 'nav-dark-theme' : 'nav-light-theme'
+          const navLinkTheme = isDarkTheme
+            ? 'nav-link-dark-theme'
+            : 'nav-link-light-theme'
           return (
-            <nav className="nav-bg">
+            <nav className={`nav-bg ${navTheme}`}>
               <div className="t1">
                 <div className="nav-lg-container">
                   <div className="nav-logo-container">
@@ -262,8 +262,8 @@ class Header extends Component {
                         to="/"
                         className={`${
                           activePage === 'HOME'
-                            ? 'active-header-section'
-                            : 'header-section'
+                            ? `active-header-section ${navLinkTheme} `
+                            : `header-section ${navLinkTheme} `
                         }`}
                         onClick={defaultView}
                       >
@@ -275,14 +275,19 @@ class Header extends Component {
                       <Link
                         className={`${
                           activePage === 'PROFILE'
-                            ? 'active-header-section'
-                            : 'header-section'
+                            ? `active-header-section ${navLinkTheme} `
+                            : `header-section ${navLinkTheme} `
                         }`}
                         to="/my-profile"
                         onClick={defaultView}
                       >
                         Profile
                       </Link>
+                    </li>
+                    <li>
+                      <button type="button" onClick={onToggleTheme}>
+                        theme
+                      </button>
                     </li>
                     <li>
                       <button
@@ -300,7 +305,7 @@ class Header extends Component {
                     onClick={this.toggleOptions}
                     className="hamburger"
                   >
-                    <GiHamburgerMenu className="hamburger" />
+                    <GiHamburgerMenu className={`hamburger ${navLinkTheme}`} />
                   </button>
                 </div>
                 <div className="sm-options-container">
