@@ -16,6 +16,16 @@
 .nav-link-light-theme {
   color: #262626;
 }
+.dark-theme-icon{
+  margin: 0px 20px 0px 0px ;
+  font-size: 20px;
+  cursor: pointer;
+}
+.light-theme-icon{
+  font-size: 20px;
+  margin: 0px 20px 0px 0px ;
+  cursor: pointer;
+}
 .nav-lg-container {
   display: flex;
   flex-direction: row;
@@ -261,4 +271,4 @@
   .sm-search-option-btn {
     margin-right: 10px;
   }
-}
+} 

@@ -2,7 +2,9 @@ import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
 import {GiHamburgerMenu} from 'react-icons/gi'
-import {MdCancel} from 'react-icons/md'
+import {MdCancel, MdLightbulbOutline} from 'react-icons/md'
+// import {CiLight} from 'react-icons/'
+import {BsMoon} from 'react-icons/bs'
 import Cookies from 'js-cookie'
 import HeaderContext from '../../context/HeaderContext'
 import websiteLogo from '../../images/websiteLogo.png'
@@ -65,6 +67,7 @@ class Header extends Component {
             updateShowSearchResults,
             // requestSearchResultsApi,
             isDarkTheme,
+            toggleTheme,
           } = value
 
           const onUpdateSearch = event => {
@@ -85,6 +88,10 @@ class Header extends Component {
 
           const defaultView = () => {
             updateShowSearchResults(false)
+          }
+
+          const onToggleTheme = () => {
+            toggleTheme()
           }
 
           const navLinkTheme = isDarkTheme
@@ -155,6 +162,16 @@ class Header extends Component {
                 >
                   Profile
                 </Link>
+              </li>
+              <li>
+                {isDarkTheme ? (
+                  <BsMoon className="dark-theme-icon" onClick={onToggleTheme} />
+                ) : (
+                  <MdLightbulbOutline
+                    className="light-theme-icon"
+                    onClick={onToggleTheme}
+                  />
+                )}
               </li>
               <li>
                 <button
@@ -286,9 +303,17 @@ class Header extends Component {
                       </Link>
                     </li>
                     <li>
-                      <button type="button" onClick={onToggleTheme}>
-                        theme
-                      </button>
+                      {isDarkTheme ? (
+                        <BsMoon
+                          className="dark-theme-icon"
+                          onClick={onToggleTheme}
+                        />
+                      ) : (
+                        <MdLightbulbOutline
+                          className="light-theme-icon"
+                          onClick={onToggleTheme}
+                        />
+                      )}
                     </li>
                     <li>
                       <button
