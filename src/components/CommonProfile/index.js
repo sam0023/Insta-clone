@@ -1,7 +1,6 @@
 import {BsGrid3X3} from 'react-icons/bs'
 import {BiCamera} from 'react-icons/bi'
 import ProfileStory from '../ProfileStory'
-import HeaderContext from '../../context/HeaderContext'
 import ProfilePost from '../ProfilePost'
 import './index.css'
 
