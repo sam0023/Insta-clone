@@ -146,9 +146,15 @@ class OthersProfile extends Component {
     return (
       <HeaderContext.Consumer>
         {value => {
-          const {showSearchResults, search, updateSearchResults} = value
+          const {
+            showSearchResults,
+            search,
+            updateSearchResults,
+            isDarkTheme,
+          } = value
+          const profileTheme = isDarkTheme ? 'home-bg-dark' : 'home-bg-light'
           return (
-            <div className="profile-bg">
+            <div className={`profile-bg ${profileTheme}`}>
               <Header />
               {showSearchResults ? (
                 <SearchResults search={search} update={updateSearchResults} />
