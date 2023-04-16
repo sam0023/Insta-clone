@@ -79,9 +79,9 @@
 }
 .slick-prev:before,
 .slick-next:before {
-  color: #7F8487;
+  color: #7f8487;
 }
- 
+
 @media (max-width: 992px) {
   .slider-img {
     width: 54px;
