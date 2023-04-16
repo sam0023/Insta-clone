@@ -212,7 +212,7 @@ class Header extends Component {
             toggleTheme,
             isDarkTheme,
           } = value
-          console.log(isDarkTheme)
+
           const onUpdateSearch = event => {
             updateSearch(event.target.value)
           }
@@ -238,7 +238,7 @@ class Header extends Component {
           const navLinkTheme = isDarkTheme
             ? 'nav-link-dark-theme'
             : 'nav-link-light-theme'
-          console.log(navTheme)
+
           return (
             <nav className={`nav-bg ${navTheme}`}>
               <div className="t1">

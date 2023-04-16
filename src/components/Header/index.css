@@ -16,14 +16,14 @@
 .nav-link-light-theme {
   color: #262626;
 }
-.dark-theme-icon{
-  margin: 0px 20px 0px 0px ;
+.dark-theme-icon {
+  margin: 0px 20px 0px 5px;
   font-size: 20px;
   cursor: pointer;
 }
-.light-theme-icon{
+.light-theme-icon {
   font-size: 20px;
-  margin: 0px 20px 0px 0px ;
+  margin: 0px 20px 0px 5px;
   cursor: pointer;
 }
 .nav-lg-container {
@@ -271,4 +271,4 @@
   .sm-search-option-btn {
     margin-right: 10px;
   }
-} 
+}

@@ -32,9 +32,9 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin-top: 40px;
+  margin-top: 0px;
   /* width: 100%; */
-
+  margin-bottom: 0px;
   /* border: solid 1px green; */
   text-align: center;
 }
@@ -72,17 +72,16 @@
 .slider-img-name {
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   line-height: 24px;
   margin-top: 4px;
 }
 .slick-prev:before,
 .slick-next:before {
-  color: black;
+  color: #7F8487;
 }
-.loader-container {
-}
+ 
 @media (max-width: 992px) {
   .slider-img {
     width: 54px;
