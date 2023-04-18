@@ -1,6 +1,6 @@
 import {Component} from 'react'
-
 import Cookies from 'js-cookie'
+import HeaderContext from '../../context/HeaderContext'
 import Spinner from '../Spinner'
 import CommonProfile from '../CommonProfile'
 import Header from '../Header'
@@ -18,27 +18,27 @@ class OthersProfile extends Component {
   state = {
     activeView: viewOptions.loading,
     details: {},
-    showSearchResults: false,
-    search: '',
-    showSearchPage: false,
-    updateSearch: true,
+    // showSearchResults: false,
+    // search: '',
+    // showSearchPage: false,
+    // updateSearch: true,
   }
 
   componentDidMount() {
     this.requestUserProfileApi()
   }
 
-  defaultView = () => {
-    this.setState({showSearchResults: false})
-  }
+  // defaultView = () => {
+  //   this.setState({showSearchResults: false})
+  // }
 
-  updateSearch = value => {
-    this.setState(prev => ({
-      search: value,
-      showSearchResults: true,
-      updateSearch: !prev.updateSearch,
-    }))
-  }
+  // updateSearch = value => {
+  //   this.setState(prev => ({
+  //     search: value,
+  //     showSearchResults: true,
+  //     updateSearch: !prev.updateSearch,
+  //   }))
+  // }
 
   handleFailureApi = () => {
     this.setState({activeView: viewOptions.failure})
@@ -49,9 +49,9 @@ class OthersProfile extends Component {
     this.setState({details: updatedData, activeView: viewOptions.success})
   }
 
-  showSearchPage = e => {
-    this.setState({showSearchPage: e})
-  }
+  // showSearchPage = e => {
+  //   this.setState({showSearchPage: e})
+  // }
 
   requestUserProfileApi = async () => {
     this.setState({activeView: viewOptions.loading})
@@ -91,31 +91,31 @@ class OthersProfile extends Component {
     </div>
   )
 
-  renderSearchView = () => {
-    const {details} = this.state
-    return (
-      <>
-        <div className="search-page">
-          <p>Search appears here</p>
-        </div>
-        <div className="home-page-container2">
-          <CommonProfile
-            details={details}
-            profileAlt="my profile"
-            storyAlt="my story"
-            postAlt="my post"
-          />
-        </div>
-      </>
-    )
-  }
+  // renderSearchView = () => {
+  //   const {details} = this.state
+  //   return (
+  //     <>
+  //       <div className="search-page">
+  //         <p>Search appears here</p>
+  //       </div>
+  //       <div className="home-page-container2">
+  //         <CommonProfile
+  //           details={details}
+  //           profileAlt="my profile"
+  //           storyAlt="my story"
+  //           postAlt="my post"
+  //         />
+  //       </div>
+  //     </>
+  //   )
+  // }
 
   renderSuccessView = () => {
-    const {showSearchPage, details} = this.state
+    const {details} = this.state
 
-    if (showSearchPage) {
-      return this.renderSearchView()
-    }
+    // if (showSearchPage) {
+    //   return this.renderSearchView()
+    // }
     return (
       <CommonProfile
         details={details}
@@ -142,21 +142,29 @@ class OthersProfile extends Component {
   }
 
   render() {
-    const {showSearchResults, search, updateSearch} = this.state
+    // const {showSearchResults, search, updateSearch} = this.state
     return (
-      <div className="profile-bg">
-        <Header
-          updateSearch={this.updateSearch}
-          defaultView={this.defaultView}
-          showSearchPage={this.showSearchPage}
-        />
-        {showSearchResults ? (
-          <SearchResults search={search} updateSearch={updateSearch} />
-        ) : (
-          this.renderFinalView()
-        )}
-        {/* {this.renderFinalView()} */}
-      </div>
+      <HeaderContext.Consumer>
+        {value => {
+          const {
+            showSearchResults,
+            search,
+            updateSearchResults,
+            isDarkTheme,
+          } = value
+          const profileTheme = isDarkTheme ? 'home-bg-dark' : 'home-bg-light'
+          return (
+            <div className={`profile-bg ${profileTheme}`}>
+              <Header />
+              {showSearchResults ? (
+                <SearchResults search={search} update={updateSearchResults} />
+              ) : (
+                this.renderFinalView()
+              )}
+            </div>
+          )
+        }}
+      </HeaderContext.Consumer>
     )
   }
 }

@@ -2,7 +2,6 @@
   border: solid 1px black;
 } */
 .home-bg {
-  background: #fafafa;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -53,4 +52,14 @@
   .home-page-container2 {
     display: block;
   }
+}
+
+.home-bg-dark {
+  background-color: #000000;
+  color: #e7e3e3;
+}
+
+.home-bg-light {
+  background-color: #fafafa;
+  color: #262626;
 }

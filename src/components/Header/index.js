@@ -2,51 +2,36 @@ import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
 import {GiHamburgerMenu} from 'react-icons/gi'
-import {MdCancel} from 'react-icons/md'
+import {MdCancel, MdLightbulbOutline} from 'react-icons/md'
+// import {CiLight} from 'react-icons/'
+import {BsMoon} from 'react-icons/bs'
 import Cookies from 'js-cookie'
+import HeaderContext from '../../context/HeaderContext'
 import websiteLogo from '../../images/websiteLogo.png'
 import './index.css'
 
 class Header extends Component {
   state = {
-    activeSearch: '',
+    // activeSearch: '',
     showOptions: false,
     showSmSearch: false,
   }
 
-  requestUpdateSearch = event => {
-    if (event.key === 'Enter') {
-      const {updateSearch} = this.props
-      const {activeSearch} = this.state
-      updateSearch(activeSearch)
-    }
-  }
-
   toggleOptions = () => {
-    this.setState(
-      {
-        showOptions: true,
-        showSmSearch: false,
-      },
-      this.requestShowSearchPage(false),
-    )
+    this.setState({
+      showOptions: true,
+      showSmSearch: false,
+    })
   }
 
   showSearchBar = () => {
-    this.setState({showSmSearch: true}, this.requestShowSearchPage(true))
+    this.setState({showSmSearch: true})
   }
 
-  requestUpdateSearch2 = () => {
-    const {updateSearch} = this.props
-    const {activeSearch} = this.state
-    updateSearch(activeSearch)
-    console.log('duhododhfvodfvndf')
-  }
-
-  updateSearch = event => {
-    const search = event.target.value
-    this.setState({activeSearch: search})
-  }
+  // updateSearch = event => {
+  //   const search = event.target.value
+  //   this.setState({activeSearch: search})
+  // }
 
   logout = () => {
     Cookies.remove('jwt_token')
@@ -54,200 +39,309 @@ class Header extends Component {
     history.replace('/login')
   }
 
-  requestDefaultView = () => {
-    const {defaultView} = this.props
+  // requestDefaultView = () => {
+  //   const {defaultView} = this.props
 
-    this.setState({activeSearch: ''}, defaultView)
-  }
+  //   this.setState({activeSearch: ''}, defaultView)
+  // }
 
   onClickSmCancel = () => {
     console.log('smcancel')
     this.setState({showOptions: false})
   }
 
-  requestShowSearchPage = e => {
-    const {showSearchPage} = this.props
+  // requestShowSearchPage = e => {
+  //   const {showSearchPage} = this.props
 
-    showSearchPage(e)
-  }
+  //   showSearchPage(e)
+  // }
 
   renderSmOptions = () => {
     const {showSmSearch, activeSearch} = this.state
     const {activePage} = this.props
-
-    if (showSmSearch) {
-      return (
-        <>
-          <div className="sm-search-bg">
-            <div className="sm-search-container">
-              <input
-                type="search"
-                value={activeSearch}
-                onChange={this.updateSearch}
-                onKeyDown={this.requestUpdateSearch}
-                placeholder="Search Caption"
-                className="search sm-search"
-              />
-              <div className="search-icon-container sm-search-icon">
-                <button
-                  type="button"
-                  data-testid="searchIcon"
-                  onClick={this.requestUpdateSearch2}
-                  className="search-icon-btn"
-                >
-                  <FaSearch className="nav-search-icon" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )
-    }
     return (
-      <ul className="nav-sm-options-container">
-        <li>
-          <Link
-            to="/"
-            className={`${
-              activePage === 'HOME' ? 'active-header-section' : 'header-section'
-            }`}
-            onClick={this.requestDefaultView}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <button
-            type="button"
-            onClick={this.showSearchBar}
-            className="sm-search-option-btn"
-          >
-            Search
-          </button>
-        </li>
-        <li>
-          <Link
-            to="/my-profile"
-            className={`${
-              activePage === 'PROFILE'
-                ? 'active-header-section'
-                : 'header-section'
-            }`}
-            onClick={this.requestDefaultView}
-          >
-            Profile
-          </Link>
-        </li>
-        <li>
-          <button type="button" className="logout-btn " onClick={this.logout}>
-            Logout
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            className="sm-cancel-btn"
-            onClick={this.onClickSmCancel}
-          >
-            <MdCancel className="sm-cancel" />
-          </button>
-        </li>
-      </ul>
-    )
-  }
+      <HeaderContext.Consumer>
+        {value => {
+          const {
+            updateSearch,
+            updateShowSearchResults,
+            // requestSearchResultsApi,
+            isDarkTheme,
+            toggleTheme,
+          } = value
 
-  render() {
-    const {activePage} = this.props
-    console.log('activePage')
-    console.log(activePage)
-    const {activeSearch, showOptions} = this.state
-    return (
-      <nav className="nav-bg">
-        <div className="t1">
-          <div className="nav-lg-container">
-            <div className="nav-logo-container">
-              <Link to="/" onClick={this.requestDefaultView}>
-                <img
-                  src={websiteLogo}
-                  alt="website logo"
-                  className="website-logo"
-                />
-              </Link>
-              <h1 className="logo-name">Insta Share</h1>
-            </div>
+          const onUpdateSearch = event => {
+            updateSearch(event.target.value)
+          }
 
-            <ul className="nav-large-screen-options">
-              <li className="search-container">
-                <input
-                  type="search"
-                  value={activeSearch}
-                  onChange={this.updateSearch}
-                  onKeyDown={this.requestUpdateSearch}
-                  placeholder="Search Caption"
-                  className="search"
-                />
-                <div className="search-icon-container">
-                  <button
-                    type="button"
-                    data-testid="searchIcon"
-                    onClick={this.requestUpdateSearch2}
-                    className="search-icon-btn"
-                  >
-                    <FaSearch className="nav-search-icon" />
-                  </button>
+          const onShowSearchResults1 = event => {
+            if (event.key === 'Enter') {
+              updateShowSearchResults(true)
+              // requestSearchResultsApi()
+            }
+          }
+
+          const onShowSearchResults2 = () => {
+            updateShowSearchResults(true)
+            // requestSearchResultsApi()
+          }
+
+          const defaultView = () => {
+            updateShowSearchResults(false)
+          }
+
+          const onToggleTheme = () => {
+            toggleTheme()
+          }
+
+          const navLinkTheme = isDarkTheme
+            ? 'nav-link-dark-theme'
+            : 'nav-link-light-theme'
+
+          if (showSmSearch) {
+            return (
+              <>
+                <div className="sm-search-bg">
+                  <div className="sm-search-container">
+                    <input
+                      type="search"
+                      value={activeSearch}
+                      onChange={onUpdateSearch}
+                      onKeyDown={onShowSearchResults1}
+                      placeholder="Search Caption"
+                      className="search sm-search"
+                    />
+                    <div className="search-icon-container sm-search-icon">
+                      <button
+                        type="button"
+                        data-testid="searchIcon"
+                        onClick={onShowSearchResults2}
+                        className="search-icon-btn"
+                      >
+                        <FaSearch className="nav-search-icon" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </li>
+              </>
+            )
+          }
+          return (
+            <ul className="nav-sm-options-container">
               <li>
                 <Link
                   to="/"
                   className={`${
                     activePage === 'HOME'
-                      ? 'active-header-section'
-                      : 'header-section'
+                      ? `active-header-section ${navLinkTheme} `
+                      : `header-section ${navLinkTheme} `
                   }`}
-                  onClick={this.requestDefaultView}
+                  onClick={defaultView}
                 >
                   Home
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  className={`${
-                    activePage === 'PROFILE'
-                      ? 'active-header-section'
-                      : 'header-section'
-                  }`}
-                  to="/my-profile"
-                  onClick={this.requestDefaultView}
-                >
-                  Profile
                 </Link>
               </li>
               <li>
                 <button
                   type="button"
-                  className="logout-btn"
+                  onClick={this.showSearchBar}
+                  className={`sm-search-option-btn ${navLinkTheme}`}
+                >
+                  Search
+                </button>
+              </li>
+              <li>
+                <Link
+                  to="/my-profile"
+                  className={`${
+                    activePage === 'PROFILE'
+                      ? `active-header-section ${navLinkTheme} `
+                      : `header-section ${navLinkTheme} `
+                  }`}
+                  onClick={defaultView}
+                >
+                  Profile
+                </Link>
+              </li>
+              <li>
+                {isDarkTheme ? (
+                  <BsMoon className="dark-theme-icon" onClick={onToggleTheme} />
+                ) : (
+                  <MdLightbulbOutline
+                    className="light-theme-icon"
+                    onClick={onToggleTheme}
+                  />
+                )}
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="logout-btn "
                   onClick={this.logout}
                 >
                   Logout
                 </button>
               </li>
+              <li>
+                <button
+                  type="button"
+                  className="sm-cancel-btn"
+                  onClick={this.onClickSmCancel}
+                >
+                  <MdCancel className={`sm-cancel ${navLinkTheme}`} />
+                </button>
+              </li>
             </ul>
+          )
+        }}
+      </HeaderContext.Consumer>
+    )
+  }
 
-            <button
-              type="button"
-              onClick={this.toggleOptions}
-              className="hamburger"
-            >
-              <GiHamburgerMenu className="hamburger" />
-            </button>
-          </div>
-          <div className="sm-options-container">
-            {showOptions && this.renderSmOptions()}
-          </div>
-        </div>
-      </nav>
+  render() {
+    const {activePage} = this.props
+
+    const {showOptions} = this.state
+    return (
+      <HeaderContext.Consumer>
+        {value => {
+          const {
+            search,
+            updateSearch,
+            updateShowSearchResults,
+            toggleTheme,
+            isDarkTheme,
+          } = value
+
+          const onUpdateSearch = event => {
+            updateSearch(event.target.value)
+          }
+
+          const onShowSearchResults1 = event => {
+            if (event.key === 'Enter') {
+              updateShowSearchResults(true)
+            }
+          }
+
+          const onShowSearchResults2 = () => {
+            updateShowSearchResults(true)
+          }
+
+          const defaultView = () => {
+            updateShowSearchResults(false)
+          }
+
+          const onToggleTheme = () => {
+            toggleTheme()
+          }
+          const navTheme = isDarkTheme ? 'nav-dark-theme' : 'nav-light-theme'
+          const navLinkTheme = isDarkTheme
+            ? 'nav-link-dark-theme'
+            : 'nav-link-light-theme'
+
+          return (
+            <nav className={`nav-bg ${navTheme}`}>
+              <div className="t1">
+                <div className="nav-lg-container">
+                  <div className="nav-logo-container">
+                    <Link to="/" onClick={this.requestDefaultView}>
+                      <img
+                        src={websiteLogo}
+                        alt="website logo"
+                        className="website-logo"
+                      />
+                    </Link>
+                    <h1 className="logo-name">Insta Share</h1>
+                  </div>
+
+                  <ul className="nav-large-screen-options">
+                    <li className="search-container">
+                      <input
+                        type="search"
+                        value={search}
+                        onChange={onUpdateSearch}
+                        onKeyDown={onShowSearchResults1}
+                        placeholder="Search Caption"
+                        className="search"
+                      />
+                      <div className="search-icon-container">
+                        <button
+                          type="button"
+                          data-testid="searchIcon"
+                          onClick={onShowSearchResults2}
+                          className="search-icon-btn"
+                        >
+                          <FaSearch className="nav-search-icon" />
+                        </button>
+                      </div>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className={`${
+                          activePage === 'HOME'
+                            ? `active-header-section ${navLinkTheme} `
+                            : `header-section ${navLinkTheme} `
+                        }`}
+                        onClick={defaultView}
+                      >
+                        Home
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        className={`${
+                          activePage === 'PROFILE'
+                            ? `active-header-section ${navLinkTheme} `
+                            : `header-section ${navLinkTheme} `
+                        }`}
+                        to="/my-profile"
+                        onClick={defaultView}
+                      >
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      {isDarkTheme ? (
+                        <BsMoon
+                          className="dark-theme-icon"
+                          onClick={onToggleTheme}
+                        />
+                      ) : (
+                        <MdLightbulbOutline
+                          className="light-theme-icon"
+                          onClick={onToggleTheme}
+                        />
+                      )}
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        className="logout-btn"
+                        onClick={this.logout}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+
+                  <button
+                    type="button"
+                    onClick={this.toggleOptions}
+                    className="hamburger"
+                  >
+                    <GiHamburgerMenu className={`hamburger ${navLinkTheme}`} />
+                  </button>
+                </div>
+                <div className="sm-options-container">
+                  {showOptions && this.renderSmOptions()}
+                </div>
+              </div>
+            </nav>
+          )
+        }}
+      </HeaderContext.Consumer>
     )
   }
 }

@@ -1,9 +1,9 @@
 import {Component} from 'react'
-
 import Cookies from 'js-cookie'
 import Spinner from '../Spinner'
 import Post from '../Post'
 import FailureView from '../FailureView'
+// import HeaderContext from '../../context/HeaderContext'
 import searchNotFound from '../../images/searchNotFound.png'
 import './index.css'
 
@@ -25,9 +25,9 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps)
-    const {updateSearch} = this.props
-    if (updateSearch === !prevProps.updateSearch) {
+    const {update} = this.props
+
+    if (update && prevProps.update !== update) {
       this.requestSearchPostApi()
     }
   }
@@ -53,10 +53,8 @@ class SearchResults extends Component {
 
   requestSearchPostApi = async () => {
     const {search} = this.props
-    console.log('in posts api')
-    console.log(search)
-    this.setState({activeView: viewOptions.loading})
-
+    // console.log(search1)
+    // console.log(`active search is ${search1}`)
     const api = `https://apis.ccbp.in/insta-share/posts?search=${search}`
 
     const accessToken = Cookies.get('jwt_token')
@@ -124,7 +122,7 @@ class SearchResults extends Component {
 
   renderFinalView = () => {
     const {activeView} = this.state
-    console.log(activeView)
+
     switch (activeView) {
       case viewOptions.loading:
         return this.renderLoadingView()
@@ -139,6 +137,9 @@ class SearchResults extends Component {
 
   render() {
     return this.renderFinalView()
+
+    // return this.renderFinalView()
   }
 }
+
 export default SearchResults
