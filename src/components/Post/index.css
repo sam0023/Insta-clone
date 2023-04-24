@@ -1,22 +1,22 @@
-.post-dark-theme {
+.post-dark-theme{
   background-color: #0a0a0a;
   color: #e7e3e3;
   border: solid 1px #727274;
   border-radius: 4px 4px 0px 0px;
 }
-.post-light-theme {
+.post-light-theme{
   background-color: #ffffff;
-  color: #262626;
+  color:#262626;
   border: solid 1px #e7e3e3;
   border-radius: 4px 4px 0px 0px;
 }
 
-.post-profile-dark-theme {
-  color: #e7e3e3;
+.post-profile-dark-theme{
+  color:#e7e3e3 ;
 }
 
-.post-profile-light-theme {
-  color: #262626;
+.post-profile-light-theme{
+  color:#262626
 }
 
 .post-container {
@@ -66,13 +66,10 @@
   height: 18px;
   left: 72px;
   top: 21px;
-
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-
   align-items: center;
-
   /* color: #262626; */
 }
 
@@ -94,7 +91,6 @@
 
 .post-img-container {
   margin-bottom: 0px;
-
   padding: 0px;
 }
 .icons-container {
