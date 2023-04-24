@@ -8,14 +8,10 @@
   width: 80vw;
 }
 
-/* * {
-  border: solid 1px red;
-} */
+ 
 .slider {
   padding: 50px;
-
   width: 100%;
-  /* background-color: blueviolet; */
   display: flex;
   margin-bottom: 0px;
   padding-bottom: 0px;
@@ -41,9 +37,7 @@
 
 .img-container {
   text-align: center;
-
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;

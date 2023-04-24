@@ -1,7 +1,8 @@
+import {Component, useState, useEffect} from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import {Component} from 'react'
+
 import Cookies from 'js-cookie'
 import Spinner from '../Spinner'
 import FailureView from '../FailureView'
@@ -14,61 +15,60 @@ const viewOptions = {
   failure: 'FAILURE',
 }
 
-class UserStories extends Component {
-  state = {
-    activeView: viewOptions.loading,
-    stories: [],
-  }
+const UserStories = () => {
+  const [activeView, setActiveView] = useState(viewOptions.loading)
+  const [stories, setStories] = useState([])
 
-  componentDidMount() {
-    this.requestUserStoriesApi()
-  }
-
-  handleSuccessApi = data => {
-    const stories = data.users_stories
-    const updatedStories = stories.map(eachItem => ({
+  const handleSuccessApi = data => {
+    const userStories = data.users_stories
+    const updatedStories = userStories.map(eachItem => ({
       userId: eachItem.user_id,
       userName: eachItem.user_name,
       storyUrl: eachItem.story_url,
     }))
-    // console.log(updatedStories)
-    this.setState({activeView: viewOptions.success, stories: updatedStories})
+
+    setStories(updatedStories)
+    setActiveView(viewOptions.success)
   }
 
-  requestUserStoriesApi = async () => {
-    const accessToken = Cookies.get('jwt_token')
-    const option = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-    const api = `https://apis.ccbp.in/insta-share/stories`
+  useEffect(() => {
+    const requestUserStoriesApi = async () => {
+      const accessToken = Cookies.get('jwt_token')
+      const option = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+      const api = `https://apis.ccbp.in/insta-share/stories`
 
-    const response = await fetch(api, option)
-    const data = await response.json()
-    // console.log(response)
-    if (response.ok) {
-      this.handleSuccessApi(data)
-    } else {
-      this.setState({activeView: viewOptions.failure})
+      const response = await fetch(api, option)
+      const data = await response.json()
+      // console.log(response)
+      if (response.ok) {
+        handleSuccessApi(data)
+      } else {
+        setActiveView(viewOptions.failure)
+      }
     }
-  }
+    requestUserStoriesApi()
+  }, [])
 
-  renderLoadingView = () => (
+  const renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
       <Spinner />
     </div>
   )
 
-  renderFailureView = () => (
+  const renderFailureView = () => (
     <div className="home-failure-bg">
       <FailureView apiRequest={this.requestUserStoriesApi} />
     </div>
   )
 
-  renderSuccessView = () => {
-    const {stories} = this.state
+  const renderSuccessView = () => {
+    console.log('stories')
+    console.log(stories)
     const settings = {
       dots: false,
       infinite: false,
@@ -121,23 +121,20 @@ class UserStories extends Component {
     )
   }
 
-  renderFinalView = () => {
-    const {activeView} = this.state
-
+  const renderFinalView = () => {
     switch (activeView) {
       case viewOptions.loading:
-        return this.renderLoadingView()
+        return renderLoadingView()
       case viewOptions.success:
-        return this.renderSuccessView()
+        return renderSuccessView()
       case viewOptions.failure:
-        return this.renderFailureView()
+        return renderFailureView()
       default:
         return null
     }
   }
 
-  render() {
-    return this.renderFinalView()
-  }
+  return renderFinalView()
 }
+
 export default UserStories
