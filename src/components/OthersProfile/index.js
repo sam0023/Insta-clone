@@ -33,7 +33,7 @@ const OthersProfile = props => {
 
   const requestUserProfileApi = async () => {
     setActiveView(viewOptions.loading)
-    console.log('in api req')
+
     const {params} = match
     const {id} = params
     const accessToken = Cookies.get('jwt_token')

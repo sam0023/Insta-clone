@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 import HeaderContext from '../../context/HeaderContext'
 import Spinner from '../Spinner'
@@ -15,52 +15,27 @@ const viewOptions = {
   failure: 'FAILURE',
 }
 
-class MyProfile extends Component {
-  state = {
-    activeView: viewOptions.loading,
-    details: {},
-    // showSearchResults: false,
+const MyProfile = () => {
+  const [activeView, setActiveView] = useState(viewOptions.loading)
+  const [details, setDetails] = useState({})
 
-    // updateSearch: true,
+  const handleFailureApi = () => {
+    setActiveView(viewOptions.failure)
   }
 
-  componentDidMount() {
-    this.requestUserProfileApi()
-  }
-
-  // defaultView = () => {
-  //   this.setState({showSearchResults: false})
-  // }
-
-  // showSearchPage = e => {
-  //   this.setState({showSearchPage: e})
-  // }
-
-  // updateSearch = value => {
-  //   this.setState(prev => ({
-  //     search: value,
-  //     showSearchResults: true,
-  //     updateSearch: !prev.updateSearch,
-  //   }))
-  // }
-
-  handleFailureApi = () => {
-    this.setState({activeView: viewOptions.failure})
-  }
-
-  handleSuccessApi = data => {
+  const handleSuccessApi = data => {
     const updatedData = data.profile
-    this.setState({details: updatedData, activeView: viewOptions.success})
+
+    setDetails(updatedData)
+    setActiveView(viewOptions.success)
   }
 
-  requestUserProfileApi = async () => {
-    this.setState({activeView: viewOptions.loading})
+  const requestUserProfileApi = async () => {
+    setActiveView(viewOptions.loading)
     const api = `https://apis.ccbp.in/insta-share/my-profile`
-    // const {match} = this.props
-    // const {params} = match
-    // const {id} = params
+
     const accessToken = Cookies.get('jwt_token')
-    // const api = `https://apis.ccbp.in/insta-share/users/${id}`
+
     const option = {
       method: 'GET',
       headers: {
@@ -72,100 +47,75 @@ class MyProfile extends Component {
     const data = await response.json()
 
     if (response.ok) {
-      this.handleSuccessApi(data)
+      handleSuccessApi(data)
     } else {
-      this.handleFailureApi()
+      handleFailureApi()
     }
   }
 
-  renderLoadingView = () => (
+  useEffect(() => {
+    requestUserProfileApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
       <Spinner />
     </div>
   )
 
-  renderFailureView = () => (
+  const renderFailureView = () => (
     <div>
-      <FailureView apiRequest={this.requestUserProfileApi} />
+      <FailureView apiRequest={requestUserProfileApi} />
     </div>
   )
 
-  // renderSearchView = () => {
-  //   const {details} = this.state
-  //   return (
-  //     <>
-  //       <div className="search-page">
-  //         <p>Search appears here</p>
-  //       </div>
-  //       <div className="home-page-container2">
-  //         <CommonProfile
-  //           details={details}
-  //           profileAlt="my profile"
-  //           storyAlt="my story"
-  //           postAlt="my post"
-  //         />
-  //       </div>
-  //     </>
-  //   )
-  // }
+  const renderSuccessView = () => (
+    <CommonProfile
+      details={details}
+      profileAlt="my profile"
+      storyAlt="my story"
+      postAlt="my post"
+    />
+  )
 
-  renderSuccessView = () => {
-    const {details} = this.state
-
-    // if (showSearchPage) {
-    //   return this.renderSearchView()
-    // }
-    return (
-      <CommonProfile
-        details={details}
-        profileAlt="my profile"
-        storyAlt="my story"
-        postAlt="my post"
-      />
-    )
-  }
-
-  renderFinalView = () => {
-    const {activeView} = this.state
-
+  const renderFinalView = () => {
     switch (activeView) {
       case viewOptions.loading:
-        return this.renderLoadingView()
+        return renderLoadingView()
       case viewOptions.success:
-        return this.renderSuccessView()
+        return renderSuccessView()
       case viewOptions.failure:
-        return this.renderFailureView()
+        return renderFailureView()
       default:
         return null
     }
   }
 
-  render() {
-    // const {showSearchResults, search, updateSearch} = this.state
-    return (
-      <HeaderContext.Consumer>
-        {value => {
-          const {
-            showSearchResults,
-            search,
-            updateSearchResults,
-            isDarkTheme,
-          } = value
-          const profileTheme = isDarkTheme ? 'home-bg-dark' : 'home-bg-light'
-          return (
-            <div className={`profile-bg ${profileTheme}`}>
-              <Header activePage="PROFILE" />
+  return (
+    <HeaderContext.Consumer>
+      {value => {
+        const {
+          showSearchResults,
+          search,
+          updateSearchResults,
+          isDarkTheme,
+        } = value
+        const profileTheme = isDarkTheme ? 'home-bg-dark' : 'home-bg-light'
+        return (
+          <div className={`profile-bg ${profileTheme}`}>
+            <Header activePage="PROFILE" />
 
-              {showSearchResults ? (
-                <SearchResults search={search} update={updateSearchResults} />
-              ) : (
-                this.renderFinalView()
-              )}
-            </div>
-          )
-        }}
-      </HeaderContext.Consumer>
-    )
-  }
+            {showSearchResults ? (
+              <SearchResults search={search} update={updateSearchResults} />
+            ) : (
+              renderFinalView()
+            )}
+          </div>
+        )
+      }}
+    </HeaderContext.Consumer>
+  )
 }
+
 export default MyProfile
