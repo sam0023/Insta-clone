@@ -1,4 +1,4 @@
-import {Component, useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -44,7 +44,7 @@ const UserStories = () => {
 
       const response = await fetch(api, option)
       const data = await response.json()
-      // console.log(response)
+
       if (response.ok) {
         handleSuccessApi(data)
       } else {
